@@ -1,0 +1,6 @@
+.profile {
+  margin-top: 36.25px;
+  display: grid;
+  grid-auto-flow: column;
+  width: 100%;
+}
