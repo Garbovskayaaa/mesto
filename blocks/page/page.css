@@ -2,10 +2,14 @@
   background-color: black;
   text-rendering: optimizeLegibility;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
-  max-width: 880px;
-  width: 100%;
+  max-width: 320px;
   margin: 0 auto;
   position: relative;
   color: #FFFFFF;
-  max-height: 1189px;
+}
+
+@media (min-width: 768px) {
+  .page {
+    max-width: 880px;
+  }
 }

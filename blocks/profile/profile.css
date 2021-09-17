@@ -1,6 +1,13 @@
 .profile {
-  margin-top: 36.25px;
-  display: grid;
-  grid-auto-flow: column;
+  margin-top: 69.85px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+}
+
+@media (min-width: 768px) {
+  .profile {
+    margin-top: 36.25px;
+    flex-direction: row;
+  }
 }
