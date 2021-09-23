@@ -1,0 +1,13 @@
+.popup__input {
+    margin-left: 22px;
+    margin-right: 22px;
+    width: 238px;
+  }
+
+@media (min-width: 768px) {
+  .popup__input {
+    margin-left: 36px;
+    margin-right: 36px;
+    width: 358px;
+  }
+}

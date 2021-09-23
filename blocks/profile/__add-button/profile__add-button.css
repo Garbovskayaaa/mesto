@@ -1,28 +1,25 @@
 .profile__add-button {
-  width: 155px;
   height: 50px;
-  margin-top: 35px;
-  margin-bottom: 35px;
-  margin-left: 220px;
   border: 2px solid white;
   border-radius: 1px;
   justify-self: end;
-  /* background: transparent; */
   background-image: url(../../../image/Vector.png);
   background-repeat: no-repeat;
   background-position: center;
   padding: 0px;
   cursor: pointer;
   background-color: black;
-}
-
-.profile__add-button:hover {
-  opacity: 0.6;
+  margin: 36px 19px 0 19px;
 }
 
 @media (min-width: 768px) {
   .profile__add-button{
-    margin-left: 124px;
+    margin: 0;
+    margin-top: 35px;
     width: 155px;
     }
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
 }

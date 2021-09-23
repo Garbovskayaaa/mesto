@@ -1,13 +1,28 @@
 .profile {
-  margin-top: 69.85px;
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 @media (min-width: 768px) {
   .profile {
-    margin-top: 36.25px;
+    margin-top: 40px;
     flex-direction: row;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile {
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .profile {
+    margin: 0;
+    margin-top: 40px;
   }
 }
