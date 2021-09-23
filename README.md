@@ -1,5 +1,5 @@
 # Проект: Место 
-## https://github.com/Garbovskayaaa/mesto
+## https://garbovskayaaa.github.io/mesto/
 
 ### Обзор
 
