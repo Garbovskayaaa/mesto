@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="./image/airplane.com_70563.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Место</title>
+</head>
+<body class="body">
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./image/logo.svg" alt="Логотип Место">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__custom">
+          <img class="profile__avatar" src="./image/Avatar.jpg" alt="Аватар">
+          <div class="profile__info">
+            <div class="profile__info-name">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button type="button" class="profile__edit-button menu_open_popup"></button>
+            </div>
+            <p class="profile__job">Исследователь океана</p>
+          </div>
+        </div>
+        <button type="button" class="profile__add-button"></button>
+      </section>
+
+      <section class="photos">
+      <ul class="elements">
+        <li class="element">
+          <img src="./image/kirill-karahaevsk.jpg" alt="Карачаевск" class="element__item">
+          <div class="element__info">
+            <h3 class="element__text">Карачаевск</h3>
+            <button type="button" class="element__mask"></button>            
+          </div>
+        </li>
+        <li class="element">
+          <img src="./image/kirill-elbrus.jpg" alt="Эльбрус" class="element__item">
+          <div class="element__info">
+            <h3 class="element__text">Эльбрус</h3>
+            <button type="button" class="element__mask"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./image/kirill-domday.jpg" alt="Домбай" class="element__item">
+          <div class="element__info">
+            <h3 class="element__text">Домбай</h3>
+            <button type="button" class="element__mask"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./image/igor-sohi.jpg" alt="Сочи" class="element__item">
+          <div class="element__info">
+            <h3 class="element__text">Сочи</h3>
+            <button type="button" class="element__mask"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./image/egor-hutor.jpg" alt="Роза Хутор" class="element__item">
+          <div class="element__info">
+            <h3 class="element__text">Роза Хутор</h3>
+            <button type="button" class="element__mask"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./image/aisvri-kabardino.jpg" alt="Кабардино-Балкария" class="element__item">
+          <div class="element__info">
+            <h3 class="element__text">Кабардино-Балкария</h3>
+            <button type="button" class="element__mask"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+    <section class="popup">
+      <div class="popup__form">
+        <img class="popup__close" src="./image/CloseIcon.svg" alt="Закрыть">
+        <form class="popup__edit-profile" name="edit-profile">
+          <div class="popup__profile">
+            <h3 class="popup__edit">Редактировать профиль</h3>
+            <div class="popup__input">
+              <input type="text" value="" placeholder="Имя" class="popup__input_username" name="profile-name">
+              <input type="text" value="" placeholder="О себе" class="popup__input_job" name="userjob">
+            </div>
+            <button type="submit" class="popup__submit" name="submit">Сохранить</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <script src="./scripts/scripts.js"></script>
+  </div>
+</body>
+</html>

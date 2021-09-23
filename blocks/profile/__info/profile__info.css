@@ -1,0 +1,14 @@
+.profile__info {
+  margin: 0;
+  padding: 0;
+  margin-left: 19px;
+  margin-right: 19px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .profile__info {
+    padding-left: 30px;
+    }
+}
