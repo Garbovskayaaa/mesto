@@ -9,14 +9,12 @@
     flex-direction: row;
     margin-left: 40px;
     margin-right: 40px;
-    margin-top: 40px;
   }
 }
 
 @media (min-width: 1024px) {
   .profile {
     justify-content: space-between;
-    margin-top: 40px;
   }
 }
 
