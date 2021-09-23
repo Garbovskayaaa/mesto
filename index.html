@@ -9,9 +9,11 @@
 </head>
 <body class="body">
   <div class="page">
+
     <header class="header">
       <img class="header__logo" src="./image/logo.svg" alt="Логотип Место">
     </header>
+
     <main class="content">
       <section class="profile">
         <div class="profile__custom">
@@ -26,7 +28,6 @@
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
-
       <section class="photos">
       <ul class="elements">
         <li class="element">
@@ -74,21 +75,21 @@
       </ul>
     </section>
     </main>
+
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
+    
     <section class="popup">
       <div class="popup__form">
         <img class="popup__close" src="./image/CloseIcon.svg" alt="Закрыть">
         <form class="popup__edit-profile" name="edit-profile">
-          <div class="popup__profile">
-            <h3 class="popup__edit">Редактировать профиль</h3>
-            <div class="popup__input">
-              <input type="text" value="" placeholder="Имя" class="popup__input_username" name="profile-name">
-              <input type="text" value="" placeholder="О себе" class="popup__input_job" name="userjob">
-            </div>
-            <button type="submit" class="popup__submit" name="submit">Сохранить</button>
+          <h3 class="popup__edit">Редактировать профиль</h3>
+          <div class="popup__user">
+            <input type="text" value="" placeholder="Имя" class="popup__input popup__input_user_name" name="profile-name">
+            <input type="text" value="" placeholder="О себе" class="popup__input popup__input_user_job" name="userjob">
           </div>
+          <button type="submit" class="popup__submit" name="submit">Сохранить</button>
         </form>
       </div>
     </section>

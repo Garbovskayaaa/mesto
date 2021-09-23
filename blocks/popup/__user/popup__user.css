@@ -1,0 +1,11 @@
+.popup__user {
+    margin-left: 22px;
+    margin-right: 22px;
+  }
+
+@media (min-width: 768px) {
+  .popup__user {
+    margin-left: 36px;
+    margin-right: 36px;
+  }
+}

@@ -1,13 +1,24 @@
 .popup__input {
-    margin-left: 22px;
-    margin-right: 22px;
-    width: 238px;
+  border: 0;
+  padding: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  outline: none;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #000000;
+  margin-bottom: 30px;
+  width: 100%;
   }
+.popup__input:last-child{
+    margin-bottom: 0;
+}
 
 @media (min-width: 768px) {
   .popup__input {
-    margin-left: 36px;
-    margin-right: 36px;
-    width: 358px;
+    /* margin-top: 54px; */
   }
 }
