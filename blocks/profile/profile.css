@@ -1,20 +1,17 @@
 .profile {
   display: flex;
   flex-direction: column;
+  padding: 0;
+  margin: 0;
 }
 
 @media (min-width: 768px) {
   .profile {
-    margin-top: 40px;
     flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
     margin-left: 40px;
     margin-right: 40px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .profile {
-    justify-content: space-between;
   }
 }
 

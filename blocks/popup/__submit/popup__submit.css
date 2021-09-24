@@ -1,11 +1,9 @@
 .popup__submit {
   min-height: 46px;
   min-width: 238px;
+  width: 100%;
   padding: 0;
   margin-top: 45px;
-  margin-left: 22px;
-  margin-right: 22px;
-  cursor: pointer;
   border-radius: 2px;
   border: 0;
   background: black;
@@ -13,17 +11,14 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  text-align: center;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
   .popup__submit {
-    width: 100%;
     max-height: 50px;
     max-width: 358px;
     margin-top: 48px;
-    margin-left: 36px;
-    margin-right: 36px;
     font-size: 18px;
     line-height: 22px;
   }

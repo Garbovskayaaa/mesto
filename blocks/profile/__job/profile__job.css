@@ -4,15 +4,20 @@
   font-size: 14px;
   line-height: 17px;
   font-weight: 400;
-  text-align: center;
   padding: 0;
+  max-width: 282px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .profile__job {
+    text-align: left;
     margin-top: 16px;
     font-size: 18px;
     line-height: 22px;
-    text-align: left;
+    max-width: 336px;
   }
 }

@@ -1,19 +1,17 @@
 .popup__form {
-    position: relative;
-    display: flex;
-    background-color: white;
-    border-radius: 10px;
-    padding: 0;
-    margin: 0;
-    width: 282px;
-    height: 322px;
-    color: black;
-    justify-content: center;
-  }
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  margin: 0;
+  width: 238px;
+  color: black;
+  padding: 25px 22px;
+}
 
 @media (min-width: 768px) {
   .popup__form {
-    width: 430px;
-    height: 330px;
+    width: 358px;
+    padding: 34.43px 36px;
   }
 }

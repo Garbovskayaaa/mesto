@@ -2,22 +2,23 @@
   height: 50px;
   border: 2px solid white;
   border-radius: 1px;
-  justify-self: end;
-  background-image: url(../../../image/Vector.png);
+  background-image: url('../../../image/Plus.svg');
   background-repeat: no-repeat;
   background-position: center;
+  background-color: black;
+  background-size: 16px;
   padding: 0px;
   cursor: pointer;
-  background-color: black;
   margin: 36px 19px 0 19px;
 }
 
 @media (min-width: 768px) {
-  .profile__add-button{
+  .profile__add-button {
     margin: 0;
     margin-top: 35px;
     width: 155px;
-    }
+    background-size: 22px;
+  }
 }
 
 .profile__add-button:hover {

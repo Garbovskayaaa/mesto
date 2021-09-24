@@ -9,6 +9,7 @@
 
 @media (min-width: 768px) {
   .profile__info {
+    margin: 0;
     padding-left: 30px;
-    }
+  }
 }

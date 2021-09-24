@@ -1,5 +1,5 @@
 .profile__edit-button {
-  background-image: url(../../../image/EditButton.png);
+  background-image: url('../../../image/arrow.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 7.5px;
@@ -7,12 +7,11 @@
   height: 18px;
   padding: 0;
   display: flex;
-  align-self:flex-end;
+  align-self: flex-end;
   justify-content: center;
   background-color: black;
   margin: 0;
   margin-left: 10px;
-  margin-bottom: 0;
   border: 1px solid #FFFFFF;
   cursor: pointer;
 }
