@@ -1,6 +1,6 @@
 .profile__job {
   margin: 0;
-  margin-top: 14px;
+  margin-top: 10px;
   font-size: 14px;
   line-height: 17px;
   font-weight: 400;
@@ -15,7 +15,7 @@
 @media (min-width: 768px) {
   .profile__job {
     text-align: left;
-    margin-top: 16px;
+    margin-top: 8px;
     font-size: 18px;
     line-height: 22px;
     max-width: 336px;

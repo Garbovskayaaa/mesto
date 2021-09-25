@@ -12,6 +12,8 @@
   background-color: black;
   margin: 0;
   margin-left: 10px;
+  margin-top: 8px;
+  margin-bottom: 7px;
   border: 1px solid #FFFFFF;
   cursor: pointer;
 }
