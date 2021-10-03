@@ -34,7 +34,7 @@
               <img src="./image/kirill-karahaevsk.jpg" alt="Карачаевск" class="element__item">
               <div class="element__info">
                 <h2 class="element__suptitle">Карачаевск</h2>
-                <button type="button" class="element__mask"></button>           
+                <button type="button" class="element__mask" aria-label="like"></button>
               </div>
             </li>
             <li class="element">
@@ -80,7 +80,7 @@
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
       </footer>
       
-      <div class="popup">
+      <div class="popup popup__edit">
         <div class="popup__form">
           <button type="button" class="popup__close" aria-label="close"></button>
           <h3 class="popup__suptitle">Редактировать профиль</h3>
@@ -88,6 +88,32 @@
             <div class="popup__user">
               <input type="text" value="" placeholder="Имя" class="popup__input popup__input_user_name" name="profile-name">
               <input type="text" value="" placeholder="О себе" class="popup__input popup__input_user_job" name="userjob">
+            </div>
+            <button type="submit" class="popup__submit" name="submit">Сохранить</button>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup__add">
+        <div class="popup__form">
+          <button type="button" class="popup__close" aria-label="close"></button>
+          <h3 class="popup__suptitle">Новое место</h3>
+          <form class="popup__edit-addCard" name="edit-profile">
+            <div class="popup__user">
+              <input type="text" value="" placeholder="Название" class="popup__input popup__input_title" name="profile-name">
+              <input type="url" value="" placeholder="Ссылка на картинку" class="popup__input popup__input_link" name="userjob">
+            </div>
+            <button type="submit" class="popup__submit" name="submit">Сохранить</button>
+          </form>
+        </div>
+      </div>
+      <div class="popup popup_type_image">
+        <div class="popup__form">
+          <button type="button" class="popup__close" aria-label="close"></button>
+          <h3 class="popup__suptitle">Новое место</h3>
+          <form class="popup__edit-addCard" name="edit-profile">
+            <div class="popup__user">
+              <input type="text" value="" placeholder="Название" class="popup__input popup__input_title" name="profile-name">
+              <input type="url" value="" placeholder="Ссылка на картинку" class="popup__input popup__input_link" name="userjob">
             </div>
             <button type="submit" class="popup__submit" name="submit">Сохранить</button>
           </form>

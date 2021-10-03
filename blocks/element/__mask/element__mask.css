@@ -14,7 +14,3 @@
 .element__mask:hover {
   opacity: .5;
 }
-
-.element__mask:focus {
-  background-image: url('../../../image/likeActive.svg');
-}
