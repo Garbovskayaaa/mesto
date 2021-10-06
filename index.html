@@ -31,44 +31,53 @@
         <section class="photos">
           <ul class="elements">
             <li class="element">
-              <img src="./image/kirill-karahaevsk.jpg" alt="Карачаевск" class="element__item">
+              <img src="https://s00.yaplakal.com/pics/pics_original/2/7/8/4104872.jpg" alt="Байкал" class="element__item">
+              <button type="button" class="element__delete" arie-label="delete"></button>
               <div class="element__info">
-                <h2 class="element__suptitle">Карачаевск</h2>
+                <h2 class="element__suptitle">Байкал</h2>
+                <button type="button" class="element__mask" aria-label="like">
+                  <span class="likes-number"></span>
+                </button>
+              </div>
+            </li>
+            <li class="element">
+              <img src="https://rusmystery.ru/wp-content/uploads/2018/11/yaponskoe.jpg" alt="Дальний Восток" class="element__item">
+              <button type="button" class="element__delete" arie-label="delete"></button>
+              <div class="element__info">
+                <h2 class="element__suptitle">Дальний Восток</h2>
                 <button type="button" class="element__mask" aria-label="like"></button>
               </div>
             </li>
             <li class="element">
-              <img src="./image/kirill-elbrus.jpg" alt="Эльбрус" class="element__item">
+              <img src="https://fotki.ykt.ru/albums/userpics/2015/09-29/dsc_3141.jpg" alt="Река Лена" class="element__item">
+              <button type="button" class="element__delete" arie-label="delete"></button>
               <div class="element__info">
-                <h2 class="element__suptitle">Эльбрус</h2>
+                <h2 class="element__suptitle">Река Лена</h2>
+                <button type="button" class="element__mask" aria-label="like">
+                </button>
+              </div>
+            </li>
+            <li class="element">
+              <img src="https://wallpapershome.ru/images/pages/pic_h/23351.jpg" alt="Сахалин" class="element__item">
+              <button type="button" class="element__delete" arie-label="delete"></button>
+              <div class="element__info">
+                <h2 class="element__suptitle">Сахалин</h2>
                 <button type="button" class="element__mask" aria-label="like"></button>
               </div>
             </li>
             <li class="element">
-              <img src="./image/kirill-domday.jpg" alt="Домбай" class="element__item">
+              <img src="https://static.tildacdn.com/tild3137-3133-4037-b631-663832643431/45882029112_2981c7fe.jpg" alt="Приморье" class="element__item">
+              <button type="button" class="element__delete" arie-label="delete"></button>
               <div class="element__info">
-                <h2 class="element__suptitle">Домбай</h2>
+                <h2 class="element__suptitle">Приморье</h2>
                 <button type="button" class="element__mask" aria-label="like"></button>
               </div>
             </li>
             <li class="element">
-              <img src="./image/igor-sohi.jpg" alt="Сочи" class="element__item">
+              <img src="https://mtdata.ru/u3/photo2238/20197588453-0/original.jpg" alt="Кольский полуостров" class="element__item">
+              <button type="button" class="element__delete" arie-label="delete"></button>
               <div class="element__info">
-                <h2 class="element__suptitle">Сочи</h2>
-                <button type="button" class="element__mask" aria-label="like"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="./image/egor-hutor.jpg" alt="Роза Хутор" class="element__item">
-              <div class="element__info">
-                <h2 class="element__suptitle">Роза Хутор</h2>
-                <button type="button" class="element__mask" aria-label="like"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="./image/aisvri-kabardino.jpg" alt="Кабардино-Балкария" class="element__item">
-              <div class="element__info">
-                <h2 class="element__suptitle">Кабардино-Балкария</h2>
+                <h2 class="element__suptitle">Кольский полуостров</h2>
                 <button type="button" class="element__mask" aria-label="like"></button>
               </div>
             </li>
@@ -119,7 +128,20 @@
           </form>
         </div>
       </div>
-      <script src="./scripts/scripts.js"></script>
+      <template class="template-card">
+        <li class="element">
+          <img src="#" alt="" class="element__item">
+          <div class="element__info">
+            <h2 class="element__suptitle"></h2>
+            <button type="button" class="element__mask" arial-label="like">
+              <span class="likes-number"></span>
+            </button>
+          </div>
+        </li>
+      </template>
+      <script src="./scripts/popupEdit.js"></script>
+      <script src="./scripts/cards.js"></script>
+      <script src="./scripts/like.js"></script>
     </div>
   </body>
 </html>

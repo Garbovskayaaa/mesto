@@ -25,6 +25,7 @@
 @import url('../blocks/element/__item/element__item.css');
 @import url('../blocks/element/__mask/element__mask.css');
 @import url('../blocks/element/__suptitle/element__suptitle.css');
+@import url('../blocks/element/__delete/element__delete.css');
 
 
 @import url('../blocks/footer/footer.css');
