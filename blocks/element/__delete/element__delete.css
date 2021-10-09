@@ -10,7 +10,7 @@
     border: none;
     cursor: pointer;
     position: absolute;
-    z-index: 200;
+    z-index: 50;
     right: 15px;
     top: 15px;
 }

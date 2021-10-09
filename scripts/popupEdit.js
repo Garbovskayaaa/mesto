@@ -104,16 +104,16 @@ function elementCard(item) {
   addCard.querySelector(".element__item").alt = item.name;
   addCard.querySelector(".element__mask").addEventListener("click", maskToggle);
   addCard.querySelector(".element__item").addEventListener("click", openPhoto);
+  addCard.querySelector(".element__delete").addEventListener("click", deleteCard);
   return addCard;
 }
 
 function renderElements(item) { //// методы
-  
   const addCard = elementCard(item);
   cardElements.prepend(addCard); // вставка новой картинки в начало
 }
-initialCards.map(renderElements); // новый массив
 
+initialCards.map(renderElements); // новый массив
 
 ////////////////////////////////// ОТКРЫТИЕ КАРТИНКИ ////////////////////////////////////////////////
 
@@ -125,7 +125,6 @@ function openPhoto(event) {
 function maskToggle(evt) {
   evt.target.classList.toggle("element__mask_active"); 
 }
-
 
 ////////////////////////////////ДОБАВЛЕНИЕ КАРТИНКИ///////////////////////////////////////////////////
 const newCard = document.querySelector('.popup__submit');
@@ -142,11 +141,7 @@ newCard.addEventListener('click', function () {
 });
 
 ///////////////////////////////УДАЛЕНИЕ КАРТИНКИ/////////////////////////////////////////////////////
-const deleteButton = document.querySelector('.element__delete');
-
-const listItem = document.querySelector('.template-card');
-
-deleteButton.addEventListener('click', function (evt) {
-  const listItem = deleteButton.closest('.element');
-  listItem.remove();
-}); 
+function deleteCard(evt) {
+  const deleteFoto = evt.currentTarget.closest(".element");
+  deleteFoto.remove();
+}
