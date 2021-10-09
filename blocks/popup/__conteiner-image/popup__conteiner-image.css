@@ -1,0 +1,9 @@
+.popup__conteiner-image {
+    max-width: 75vw;
+    max-height: 75vh;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 0px;
+}

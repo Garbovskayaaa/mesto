@@ -51,48 +51,102 @@ const popupAddOpen = document.querySelector('.profile__add-button'); //  доб�
 const popupAddClous = popupCards.querySelector('.popup__close'); // попап добавления новых карточек
 
 //Функия открытия формы
-function openPopup() {
+function openPopupAdd() {
   popupCards.classList.add('popup_opened');
   }
 
 // Функция закрытие формы
-function closePopup() {
+function closePopupAdd() {
   popupCards.classList.remove('popup_opened');
 }
 
-//////////////////////////////////ДОБАВЛЯЕМ НОВЫЕ КАРТИНКИ////////////////////////////////////////
-const photos = document.querySelector('.photos'); // основная секция section class="photos"
-const elementsContainer = photos.querySelector('.elements'); // ul class="elements"
-const addButton = popupCards.querySelector('.popup__submit'); //Кнопка сохранения button type="submit"
-//////////////// const resetButton = photos.querySelector('.input__btn_action_reset');
-//////////////// const noSongsElement = photos.querySelector('.no-songs');
+popupAddOpen.addEventListener('click', openPopupAdd); // открыть
+popupAddClous.addEventListener('click', closePopupAdd); // закрыть
 
-function addCard (textValue, urlValue) {
-  const trackContainer = document.createElement('li');
-  trackContainer.classList.add('element');
-  const artistElement = document.createElement('h4');
-  artistElement.classList.add('song__artist');
-  artistElement.textContent = artistValue; 
-  
-  const titleElement = document.createElement('h4');
-  titleElement.classList.add('song__title');
-  titleElement.textContent = titleValue;
-  
-  const likeButtonElement = document.createElement('button');
-  likeButtonElement.classList.add('song__like');
 
-  songsContainer.insertAdjacentHTML('beforeend', `
-    <div class="song">
-      <h4 class="song__artist">${artistValue}</h4>
-      <p class="song__title">${titleValue}</p>
-      <button class="song__like"></button>
-    </div>
-  `);
+//////////////////////////////////ДОБАВЛЯЕМ КАРТИНКИ/////////////////////////////////////////////////
+
+// (1) Добавление элементов из имеющегося массива
+const initialCards = [
+  {
+    name: "Байкал",
+    link: "https://s00.yaplakal.com/pics/pics_original/2/7/8/4104872.jpg",
+  },
+  {
+    name: "Дальний Восток",
+    link: "https://rusmystery.ru/wp-content/uploads/2018/11/yaponskoe.jpg",
+  },
+  {
+    name: "Река Лена",
+    link: "https://fotki.ykt.ru/albums/userpics/2015/09-29/dsc_3141.jpg",
+  },
+  {
+    name: "Сахалин",
+    link: "https://wallpapershome.ru/images/pages/pic_h/23351.jpg",
+  },
+  {
+    name: "Приморье",
+    link: "https://static.tildacdn.com/tild3137-3133-4037-b631-663832643431/45882029112_2981c7fe.jpg",
+  },
+  {
+    name: "Кольский полуостров",
+    link: "https://mtdata.ru/u3/photo2238/20197588453-0/original.jpg",
+  },
+];
+
+const cardElements = document.querySelector(".elements");
+const cardTemplateElement = document.querySelector(".template-card");
+
+function elementCard(item) {
+  const addCard = cardTemplateElement.content.cloneNode(true);
+  addCard.querySelector(".element__suptitle").textContent = item.name;
+  addCard.querySelector(".element__item").src = item.link;
+  addCard.querySelector(".element__item").alt = item.name;
+  addCard.querySelector(".element__mask").addEventListener("click", maskToggle);
+  // addCard.querySelector(".element__delete").addEventListener("click", deleteCard); /// нет такого
+  addCard.querySelector(".element__item").addEventListener("click", openPhoto);
+  return addCard;
+}
+
+function renderElements(item) { //// методы
+  
+  const addCard = elementCard(item);
+  cardElements.prepend(addCard); // вставка новой картинки в начало
+}
+initialCards.map(renderElements); // новый массив
+
+
+////////////////////////////////// ОТКРЫТИЕ КАРТИНКИ ////////////////////////////////////////////////
+
+function openPhoto(event) {
+  const link = event.target.currentSrc;
+  const title = event.currentTarget.nextElementSibling.innerText;
+  const alt = event.currentTarget.nextElementSibling.innerText;
+  
+  photoFull.src = link; 
+  photoFullTitle.innerText = title;
+  photoFullTitle.innerText = alt;
+  
+  togglePopup(popupPhoto);  
+}
+
+////////////////////////////////// ЛАЙК //////////////////////////////////////////////////////////////
+
+function maskToggle(evt) {
+  evt.target.classList.toggle("element__mask_active"); 
 }
 
 
+////////////////////////////////ДОБАВЛЕНИЕ КАРТИНКИ///////////////////////////////////////////////////
+const newCard = document.querySelector('.popup__submit');
 
+newCard.addEventListener('click', function () {
+  const title = document.querySelector('.popup__input_title');
+  const link = document.querySelector('.popup__input_link');
 
+  addCard(title.value, link.value);
+  renderHasCards();
 
-popupAddOpen.addEventListener('click', openPopup); // открыть
-popupAddClous.addEventListener('click', closePopup); // закрыть
+  title.value = '';
+  link.value = '';
+});

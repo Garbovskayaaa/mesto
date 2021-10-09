@@ -30,57 +30,7 @@
         </section>
         <section class="photos">
           <ul class="elements">
-            <li class="element">
-              <img src="https://s00.yaplakal.com/pics/pics_original/2/7/8/4104872.jpg" alt="Байкал" class="element__item">
-              <button type="button" class="element__delete" arie-label="delete"></button>
-              <div class="element__info">
-                <h2 class="element__suptitle">Байкал</h2>
-                <button type="button" class="element__mask" aria-label="like">
-                  <span class="likes-number"></span>
-                </button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="https://rusmystery.ru/wp-content/uploads/2018/11/yaponskoe.jpg" alt="Дальний Восток" class="element__item">
-              <button type="button" class="element__delete" arie-label="delete"></button>
-              <div class="element__info">
-                <h2 class="element__suptitle">Дальний Восток</h2>
-                <button type="button" class="element__mask" aria-label="like"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="https://fotki.ykt.ru/albums/userpics/2015/09-29/dsc_3141.jpg" alt="Река Лена" class="element__item">
-              <button type="button" class="element__delete" arie-label="delete"></button>
-              <div class="element__info">
-                <h2 class="element__suptitle">Река Лена</h2>
-                <button type="button" class="element__mask" aria-label="like">
-                </button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="https://wallpapershome.ru/images/pages/pic_h/23351.jpg" alt="Сахалин" class="element__item">
-              <button type="button" class="element__delete" arie-label="delete"></button>
-              <div class="element__info">
-                <h2 class="element__suptitle">Сахалин</h2>
-                <button type="button" class="element__mask" aria-label="like"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="https://static.tildacdn.com/tild3137-3133-4037-b631-663832643431/45882029112_2981c7fe.jpg" alt="Приморье" class="element__item">
-              <button type="button" class="element__delete" arie-label="delete"></button>
-              <div class="element__info">
-                <h2 class="element__suptitle">Приморье</h2>
-                <button type="button" class="element__mask" aria-label="like"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img src="https://mtdata.ru/u3/photo2238/20197588453-0/original.jpg" alt="Кольский полуостров" class="element__item">
-              <button type="button" class="element__delete" arie-label="delete"></button>
-              <div class="element__info">
-                <h2 class="element__suptitle">Кольский полуостров</h2>
-                <button type="button" class="element__mask" aria-label="like"></button>
-              </div>
-            </li>
+            
           </ul>
         </section>
       </main>
@@ -115,33 +65,27 @@
           </form>
         </div>
       </div>
-      <div class="popup popup_type_image">
-        <div class="popup__form">
+      <div class="popup popup__image">
+        <figure class="popup__conteiner-image">
           <button type="button" class="popup__close" aria-label="close"></button>
-          <h3 class="popup__suptitle">Новое место</h3>
-          <form class="popup__edit-addCard" name="edit-profile">
-            <div class="popup__user">
-              <input type="text" value="" placeholder="Название" class="popup__input popup__input_title" name="profile-name">
-              <input type="url" value="" placeholder="Ссылка на картинку" class="popup__input popup__input_link" name="userjob">
-            </div>
-            <button type="submit" class="popup__submit" name="submit">Сохранить</button>
-          </form>
-        </div>
+          <img src="#" class="popup__foto" alt>
+          <figcaption>
+            <h2 class="popup__foto-name">ntcn</h2>
+          </figcaption>
+        </figure>
       </div>
       <template class="template-card">
         <li class="element">
           <img src="#" alt="" class="element__item">
+          <button type="button" class="element__delete" arie-label="delete"></button>
           <div class="element__info">
             <h2 class="element__suptitle"></h2>
-            <button type="button" class="element__mask" arial-label="like">
-              <span class="likes-number"></span>
-            </button>
+            <button type="button" class="element__mask" arial-label="like"></button>
           </div>
         </li>
       </template>
       <script src="./scripts/popupEdit.js"></script>
-      <script src="./scripts/cards.js"></script>
-      <script src="./scripts/like.js"></script>
+      <script src="./scripts/card.js"></script>
     </div>
   </body>
 </html>
