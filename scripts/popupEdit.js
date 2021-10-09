@@ -122,11 +122,9 @@ function openPhoto(event) {
   const link = event.target.currentSrc;
   const title = event.currentTarget.nextElementSibling.innerText;
   const alt = event.currentTarget.nextElementSibling.innerText;
-  
   photoFull.src = link; 
   photoFullTitle.innerText = title;
   photoFullTitle.innerText = alt;
-  
   togglePopup(popupPhoto);  
 }
 
@@ -149,4 +147,14 @@ newCard.addEventListener('click', function () {
 
   title.value = '';
   link.value = '';
+});
+
+///////////////////////////////УДАЛЕНИЕ КАРТИНКИ/////////////////////////////////////////////////////
+const deleteButton = document.querySelector('.element__delete');
+
+const listItem = document.querySelector('.template-card');
+
+deleteButton.addEventListener('click', function (evt) {
+  const listItem = deleteButton.closest('.element');
+  listItem.remove();
 });
