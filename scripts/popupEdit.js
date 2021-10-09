@@ -103,7 +103,6 @@ function elementCard(item) {
   addCard.querySelector(".element__item").src = item.link;
   addCard.querySelector(".element__item").alt = item.name;
   addCard.querySelector(".element__mask").addEventListener("click", maskToggle);
-  // addCard.querySelector(".element__delete").addEventListener("click", deleteCard); /// нет такого
   addCard.querySelector(".element__item").addEventListener("click", openPhoto);
   return addCard;
 }
@@ -119,13 +118,6 @@ initialCards.map(renderElements); // новый массив
 ////////////////////////////////// ОТКРЫТИЕ КАРТИНКИ ////////////////////////////////////////////////
 
 function openPhoto(event) {
-  const link = event.target.currentSrc;
-  const title = event.currentTarget.nextElementSibling.innerText;
-  const alt = event.currentTarget.nextElementSibling.innerText;
-  photoFull.src = link; 
-  photoFullTitle.innerText = title;
-  photoFullTitle.innerText = alt;
-  togglePopup(popupPhoto);  
 }
 
 ////////////////////////////////// ЛАЙК //////////////////////////////////////////////////////////////
@@ -157,4 +149,4 @@ const listItem = document.querySelector('.template-card');
 deleteButton.addEventListener('click', function (evt) {
   const listItem = deleteButton.closest('.element');
   listItem.remove();
-});
+}); 
