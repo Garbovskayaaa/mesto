@@ -1,3 +1,11 @@
 .popup__foto {
-    
+  max-width: 240px;
+  max-height: 299px;
+}
+
+@media (min-width: 768px) {
+  .popup__foto {
+    max-width: 816px;
+    max-height: 540px;
+  }
 }

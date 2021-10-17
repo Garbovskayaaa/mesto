@@ -1,23 +1,30 @@
-////////////////////////////////////ФОРМА РЕДАКТИРОВАНИЯ ПРОФИЛЯ////////////////////////////////////
-
+///////////////////////////////объявление переменных//////////////////////////////////////////////
 // Находим форму в DOM - редактирование профиля
 const popupEdit = document.querySelector('.popup__edit');
 const formEdit = popupEdit.querySelector('.popup__edit-profile');
-
 // Находим форму в DOM - добавление картинки
 const popupCard = document.querySelector('.popup__add');
 const popupOpenCard = document.querySelector('.profile__add-button');
-
 // Находим кнопки - редактирование профиля
 let popupOpenBtn = document.querySelector('.profile__edit-button');
 let popupCloseBtn = popupEdit.querySelector('.popup__close');
-
 // Находим поля формы в DOM - редактирование профиля
 let nameInput = popupEdit.querySelector('.popup__input_user_name');
 let jobInput = popupEdit.querySelector('.popup__input_user_job');
 let nameProfile = document.querySelector('.profile__name');
 let jobProfile = document.querySelector('.profile__job');
+// Открытие формы добавление картинок
+const popupCards = document.querySelector('.popup__add'); // попап добавления новых карточек
+const popupAddOpen = document.querySelector('.profile__add-button'); //  добавления новых карточек
+const popupAddClous = popupCards.querySelector('.popup__close'); // попап закрытия добавления новых карточек
+// Открытие картинок 
+const popupImageModal = document.querySelector('.popup__image');
+const elementImg = document.querySelector('.element__item');
+const fotoPopupFull = document.querySelector(".popup__foto");
+const fotoPopupTxt = document.querySelector(".popup__foto-name");
+const imagePopupClose = popupImageModal.querySelector(".popup__close");
 
+////////////////////////////////////ФОРМА РЕДАКТИРОВАНИЯ ПРОФИЛЯ////////////////////////////////////
 // Функция открытие - редактирование профиля
 function openPopup() {
   popupEdit.classList.add('popup_opened');
@@ -44,12 +51,6 @@ popupCloseBtn.addEventListener('click', closePopup); // закрыть
 formEdit.addEventListener('submit', formSubmitHandler); //отправка формы
 
 ////////////////////////////////////ФОРМА ДОБАВЛЕНИЯ КАРТИНОК/////////////////////////////////////
-
-// Открытие формы добавление картинок, объявление переменных
-const popupCards = document.querySelector('.popup__add'); // попап добавления новых карточек
-const popupAddOpen = document.querySelector('.profile__add-button'); //  добавления новых карточек
-const popupAddClous = popupCards.querySelector('.popup__close'); // попап добавления новых карточек
-
 //Функия открытия формы
 function openPopupAdd() {
   popupCards.classList.add('popup_opened');
@@ -60,13 +61,11 @@ function closePopupAdd() {
   popupCards.classList.remove('popup_opened');
 }
 
-popupAddOpen.addEventListener('click', openPopupAdd); // открыть
-popupAddClous.addEventListener('click', closePopupAdd); // закрыть
-
+popupAddOpen.addEventListener('click', openPopupAdd); // открыть ФОРМА ДОБАВЛЕНИЯ КАРТИНОК/
+popupAddClous.addEventListener('click', closePopupAdd); // закрыть ФОРМА ДОБАВЛЕНИЯ КАРТИНОК/
 
 //////////////////////////////////ДОБАВЛЯЕМ КАРТИНКИ/////////////////////////////////////////////////
-
-// (1) Добавление элементов из имеющегося массива
+//Добавление элементов из имеющегося массива
 const initialCards = [
   {
     name: "Байкал",
@@ -117,8 +116,27 @@ initialCards.map(renderElements); // новый массив
 
 ////////////////////////////////// ОТКРЫТИЕ КАРТИНКИ ////////////////////////////////////////////////
 
-function openPhoto(event) {
+//Функия открытия формы картинка
+function openPopupImg() {
+  popupImageModal.classList.add('popup_opened');
+  }
+
+// Функция закрытие формы картинка
+function closePopupImg() {
+  popupImageModal.classList.remove('popup_opened');
 }
+
+// функция открытия фотографии для просмотра 
+function openPhoto (evt) {
+  openPopupImg(popupImageModal);
+
+  fotoPopupFull.src = evt.target.src;
+  fotoPopupFull.alt = evt.currentTarget.alt;
+  fotoPopupTxt.textContent = evt.currentTarget.alt;
+}
+
+fotoPopupFull.addEventListener('click', openPopupImg); // открыть
+imagePopupClose.addEventListener('click', closePopupImg); // закрыть
 
 ////////////////////////////////// ЛАЙК //////////////////////////////////////////////////////////////
 
