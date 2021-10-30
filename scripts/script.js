@@ -1,6 +1,6 @@
 ///////////////////////////////объявление переменных//////////////////////////////////
 // Находим форму в DOM - редактирование профиля
-const popupEdit = document.querySelector('.popup__edit'); // модал edit профиль
+const popupEdit = document.querySelector('.popup_type_edit'); // модал edit профиль
 const formEdit = popupEdit.querySelector('.popup__edit-profile'); // форма ввода edit профиль
 // Находим кнопки - редактирование профиля
 let popupOpenBtn = document.querySelector('.profile__edit-button'); // кнопка открытия edit профиль
@@ -11,11 +11,11 @@ let jobInput = popupEdit.querySelector('.popup__input_user_job'); // форма 
 let nameProfile = document.querySelector('.profile__name'); // главная страница имя user
 let jobProfile = document.querySelector('.profile__job'); // главная страница занятие user
 // Открытие формы добавление картинок
-const popupCards = document.querySelector('.popup__add'); // модал добавления new карточек
+const popupCards = document.querySelector('.popup_type_add'); // модал добавления new карточек
 const popupAddOpen = document.querySelector('.profile__add-button'); // кнопка открытия добавления new карточек
 let popupAddClous = popupCards.querySelector('.popup__close'); // кнопка закрытия добавления new карточек
 // Открытие картинок
-const popupImageModal = document.querySelector('.popup__image'); // модал окно
+const popupImageModal = document.querySelector('.popup_type_image'); // модал окно
 const fotoPopupFull = document.querySelector('.popup__foto'); // картинка
 const fotoPopupTxt = document.querySelector('.popup__foto-name'); // наименование картинки
 const imagePopupClose = popupImageModal.querySelector('.popup__close'); // кнопка закрытия картинки
