@@ -18,7 +18,6 @@
 @import url('../blocks/profile/__job/profile__job.css');
 @import url('../blocks/profile/__custom/profile__custom.css');
 
-
 @import url('../blocks/elements/elements.css');
 @import url('../blocks/element/element.css');
 @import url('../blocks/element/__info/element__info.css');
@@ -26,7 +25,6 @@
 @import url('../blocks/element/__mask/element__mask.css');
 @import url('../blocks/element/__suptitle/element__suptitle.css');
 @import url('../blocks/element/__delete/element__delete.css');
-
 
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');

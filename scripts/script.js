@@ -14,8 +14,8 @@ let jobProfile = document.querySelector('.profile__job'); // главная ст
 const popupCards = document.querySelector('.popup__add'); // модал добавления new карточек
 const popupAddOpen = document.querySelector('.profile__add-button'); // кнопка открытия добавления new карточек
 let popupAddClous = popupCards.querySelector('.popup__close'); // кнопка закрытия добавления new карточек
-// Открытие картинок 
-const popupImageModal = document.querySelector('.popup__image'); // модал окно 
+// Открытие картинок
+const popupImageModal = document.querySelector('.popup__image'); // модал окно
 const fotoPopupFull = document.querySelector('.popup__foto'); // картинка
 const fotoPopupTxt = document.querySelector('.popup__foto-name'); // наименование картинки
 const imagePopupClose = popupImageModal.querySelector('.popup__close'); // кнопка закрытия картинки
