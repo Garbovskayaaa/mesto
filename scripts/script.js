@@ -3,17 +3,17 @@
 const popupEdit = document.querySelector('.popup_type_edit'); // модал edit профиль
 const formEdit = popupEdit.querySelector('.popup__edit-profile'); // форма ввода edit профиль
 // Находим кнопки - редактирование профиля
-let popupOpenBtn = document.querySelector('.profile__edit-button'); // кнопка открытия edit профиль
-let popupCloseBtn = popupEdit.querySelector('.popup__close'); // кнопка закрытия edit профиль
+const popupOpenBtn = document.querySelector('.profile__edit-button'); // кнопка открытия edit профиль
+const popupCloseBtn = popupEdit.querySelector('.popup__close'); // кнопка закрытия edit профиль
 // Находим поля формы в DOM - редактирование профиля
-let nameInput = popupEdit.querySelector('.popup__input_user_name'); // форма ввода имя user
-let jobInput = popupEdit.querySelector('.popup__input_user_job'); // форма ввода занятие user
-let nameProfile = document.querySelector('.profile__name'); // главная страница имя user
-let jobProfile = document.querySelector('.profile__job'); // главная страница занятие user
+const nameInput = popupEdit.querySelector('.popup__input_user_name'); // форма ввода имя user
+const jobInput = popupEdit.querySelector('.popup__input_user_job'); // форма ввода занятие user
+const nameProfile = document.querySelector('.profile__name'); // главная страница имя user
+const jobProfile = document.querySelector('.profile__job'); // главная страница занятие user
 // Открытие формы добавление картинок
 const popupCards = document.querySelector('.popup_type_add'); // модал добавления new карточек
 const popupAddOpen = document.querySelector('.profile__add-button'); // кнопка открытия добавления new карточек
-let popupAddClous = popupCards.querySelector('.popup__close'); // кнопка закрытия добавления new карточек
+const popupAddClous = popupCards.querySelector('.popup__close'); // кнопка закрытия добавления new карточек
 // Открытие картинок
 const popupImageModal = document.querySelector('.popup_type_image'); // модал окно
 const fotoPopupFull = document.querySelector('.popup__foto'); // картинка
@@ -88,7 +88,7 @@ const initialCards = [
   },
 ];
 
-function elementCard(item) {
+function createCard(item) {
   const addCard = cardTemplateElement.content.cloneNode(true);
   addCard.querySelector('.element__suptitle').textContent = item.name;
   addCard.querySelector('.element__item').src = item.link;
@@ -102,7 +102,7 @@ function elementCard(item) {
 initialCards.map(renderElements); // новый массив
 
 function renderElements(item) { //// методы
-  const addCard = elementCard(item);
+  const addCard = createCard(item);
   cardElements.prepend(addCard); // вставка новой картинки в начало
 }
 
@@ -111,7 +111,7 @@ function addNewCardImg(evt) {
   evt.preventDefault();
   const titleInput = evt.currentTarget.querySelector ('.popup__input_title').value; 
   const linkInput = evt.currentTarget.querySelector ('.popup__input_link').value;
-  const newInitialCards = elementCard ({name: titleInput, link: linkInput});
+  const newInitialCards = createCard ({name: titleInput, link: linkInput});
   cardElements.prepend(newInitialCards);
   console.log(newInitialCards);
   closePopupAdd(popupCards);
