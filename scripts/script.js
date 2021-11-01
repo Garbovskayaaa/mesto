@@ -113,10 +113,9 @@ function addNewCardImg(evt) {
   const linkInput = evt.currentTarget.querySelector ('.popup__input_link').value;
   const newInitialCards = createCard ({name: titleInput, link: linkInput});
   cardElements.prepend(newInitialCards);
-  console.log(newInitialCards);
+  // console.log(newInitialCards);
   closePopupAdd(popupCards);
   evt.currentTarget.reset();
-  saveCard.setAttribute('disabled', 'disabled');
 }
 
 // функция открытия и закрытия попапа
