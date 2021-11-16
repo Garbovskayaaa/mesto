@@ -30,6 +30,8 @@ const saveCard = document.querySelector('.popup__submit'); // сохранить
 const title = document.querySelector('.popup__input_title'); // форма наименование new карточки
 const link = document.querySelector('.popup__input_link'); // форма url new карточек
 
+const popups = document.querySelectorAll('.popup')
+
 ////////////////////////////////////ФОРМА РЕДАКТИРОВАНИЯ ПРОФИЛЯ////////////////////////
 // функция закрытия попапа при клике на esc
 function closePopupEsc(evt) {
@@ -44,8 +46,15 @@ function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
 }
-
-// универсальный попап открытие
+// попап закрытия Оверлей
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+  })
+})
+// универсальный попап закрытия
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);

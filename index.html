@@ -20,10 +20,10 @@
             <img class="profile__avatar" src="./image/Avatar.jpg" alt="Аватар">
             <div class="profile__info">
               <div class="profile__info-name">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <h1 class="profile__name" placeholder="Имя" minlength="2" maxlength="40">Жак-Ив Кусто</h1>
                 <button type="button" class="profile__edit-button"></button>
               </div>
-              <p class="profile__job">Исследователь океана</p>
+              <p class="profile__job" placeholder="О себе" minlength="2" maxlength="200">Исследователь океана</p>
             </div>
           </div>
           <button type="button" class="profile__add-button" aria-label="close"></button>
@@ -58,8 +58,17 @@
           <h3 class="popup__suptitle">Новое место</h3>
           <form class="popup__edit-addCard" name="edit-profile">
             <div class="popup__user">
-              <input type="text" value="" placeholder="Название" class="popup__input popup__input_title" name="profile-name">
-              <input type="url" value="" placeholder="Ссылка на картинку" class="popup__input popup__input_link" name="userjob">
+              <input type="text" 
+                value="" 
+                placeholder="Название" 
+                minlength="2" maxlength="30" 
+                class="popup__input popup__input_title" 
+                name="profile-name">
+              <input type="url" 
+                value="" 
+                placeholder="Ссылка на картинку" 
+                class="popup__input popup__input_link" 
+                name="userjob">
             </div>
             <button type="submit" class="popup__submit" name="submit">Сохранить</button>
           </form>
@@ -85,6 +94,7 @@
         </li>
       </template>
       <script src="./scripts/script.js"></script>
+      <script src="./scripts/validate.js"></script>
     </div>
   </body>
 </html>
