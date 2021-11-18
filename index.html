@@ -20,10 +20,10 @@
             <img class="profile__avatar" src="./image/Avatar.jpg" alt="Аватар">
             <div class="profile__info">
               <div class="profile__info-name">
-                <h1 class="profile__name" placeholder="Имя" minlength="2" maxlength="40">Жак-Ив Кусто</h1>
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button type="button" class="profile__edit-button"></button>
               </div>
-              <p class="profile__job" placeholder="О себе" minlength="2" maxlength="200">Исследователь океана</p>
+              <p class="profile__job">Исследователь океана</p>
             </div>
           </div>
           <button type="button" class="profile__add-button" aria-label="close"></button>
@@ -40,36 +40,61 @@
       </footer>
       
       <div class="popup popup_type_edit">
-        <div class="popup__form">
+        <div class="popup__form" novalidate>
           <button type="button" class="popup__close" aria-label="close"></button>
           <h3 class="popup__suptitle">Редактировать профиль</h3>
-          <form class="popup__edit-profile" name="edit-profile">
-            <div class="popup__user">
-              <input type="text" value="" placeholder="Имя" class="popup__input popup__input_user_name" name="profile-name">
-              <input type="text" value="" placeholder="О себе" class="popup__input popup__input_user_job" name="userjob">
-            </div>
+          <form class="popup__edit-profile form__popup" name="edit-profile">
+              <input 
+                type="text" 
+                value="" 
+                placeholder="Имя" 
+                class="popup__input popup__input_user_name" 
+                minlength="2" maxlength="40" 
+                name="profile-name" 
+                required
+                id="name">
+              <span id="name-error" class="popup__input_type_error"></span>
+              <input
+                type="text"
+                value="" 
+                placeholder="О себе"
+                class="popup__input popup__input_user_job"
+                minlength="2"
+                maxlength="200"
+                name="userjob"
+                required
+                id="job">
+              <span id="job-error" class="popup__input_type_error"></span>
             <button type="submit" class="popup__submit" name="submit">Сохранить</button>
           </form>
         </div>
       </div>
       <div class="popup popup_type_add">
-        <div class="popup__form">
+        <div class="popup__form" novalidate>
           <button type="button" class="popup__close" aria-label="close"></button>
           <h3 class="popup__suptitle">Новое место</h3>
-          <form class="popup__edit-addCard" name="edit-profile">
-            <div class="popup__user">
-              <input type="text" 
-                value="" 
-                placeholder="Название" 
-                minlength="2" maxlength="30" 
-                class="popup__input popup__input_title" 
-                name="profile-name">
-              <input type="url" 
-                value="" 
-                placeholder="Ссылка на картинку" 
-                class="popup__input popup__input_link" 
-                name="userjob">
-            </div>
+          <form class="popup__edit-addCard form__popup" name="edit-profile">
+            <input
+              type="text"
+              value=""
+              placeholder="Название"
+              minlength="2" maxlength="30"
+              class="popup__input popup__input_title"
+              name="profile-name"
+              required
+              id="place"
+            />
+            <span id="place-error" class="popup__input_type_error"></span>
+            <input
+              type="url"
+              value=""
+              placeholder="Ссылка на картинку"
+              class="popup__input popup__input_link"
+              name="userjob"
+              required
+              id="link"
+            />
+            <span id="link-error" class="popup__input_type_error">.</span>
             <button type="submit" class="popup__submit" name="submit">Сохранить</button>
           </form>
         </div>
