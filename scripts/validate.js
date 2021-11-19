@@ -35,10 +35,9 @@ function addListenersToInput(input) {
 
 function hendleFieldValidation(evt) {
   const element = evt.target;
+  const errorConteiner = document.querySelector(`#${element.id}-error`);
 
-  if (!element.validity.valid) {
-    const errorConteiner = document.querySelector(`#${element.id}-error`);
-    errorConteiner.textContent = element.validationMessage;
-    debugger;
-  }
+  element.classList.toggle('error', !element.validity.valid);
+
+  errorConteiner.textContent = element.validationMessage;
 }

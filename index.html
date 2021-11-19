@@ -52,7 +52,9 @@
                 minlength="2" maxlength="40" 
                 name="profile-name" 
                 required
-                id="name">
+                id="name"
+                autocomplete="off"
+                />
               <span id="name-error" class="error"></span>
               <input
                 type="text"
@@ -63,7 +65,9 @@
                 maxlength="200"
                 name="userjob"
                 required
-                id="job">
+                id="job"
+                autocomplete="off"
+                />
               <span id="job-error" class="error"></span>
             <button type="submit" class="popup__submit" name="submit">Сохранить</button>
           </form>
@@ -83,6 +87,7 @@
               name="profile-name"
               required
               id="place"
+              autocomplete="off"
             />
             <span id="place-error" class="error"></span>
             <input
@@ -93,6 +98,7 @@
               name="userjob"
               required
               id="link"
+              autocomplete="off"
             />
             <span id="link-error" class="error"></span>
             <button type="submit" class="popup__submit" name="submit">Сохранить</button>
