@@ -14,10 +14,31 @@ enableValidation();
 function enableValidation() { // (должен быть объект с конфигом)
   // const forms = [...document.querySelectorAll('.form__popup')];
   const forms = Array.from(document.querySelectorAll('.popup__form'));
-  forms.forEach((form) => {
-    form.addEventListener('submit', (evt) => {
-      evt.preventDefault(); // предотвратить дефолтное поведение
-    })
+  forms.forEach(addListenersToForm)
+  // console.log(forms);
+}
+
+function addListenersToForm(form) {
+  const inputs = Array.from(document.querySelectorAll('.popup__input'));
+
+  inputs.forEach(addListenersToInput)
+
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();  // предотвратить дефолтное поведение
   })
-  console.log(forms);
+  // console.log("inputs",inputs);
+}
+
+function addListenersToInput(input) {
+  input.addEventListener('input', hendleFieldValidation);
+}
+
+function hendleFieldValidation(evt) {
+  const element = evt.target;
+
+  if (!element.validity.valid) {
+    const errorConteiner = document.querySelector(`#${element.id}-error`);
+    errorConteiner.textContent = element.validationMessage;
+    debugger;
+  }
 }
