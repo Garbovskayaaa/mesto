@@ -40,10 +40,10 @@
       </footer>
       
       <div class="popup popup_type_edit">
-        <div class="popup__form">
+        <div class="popup__container">
           <button type="button" class="popup__close" aria-label="close"></button>
           <h3 class="popup__suptitle">Редактировать профиль</h3>
-          <form class="popup__edit-profile form__popup" name="edit-profile" novalidate>
+          <form class="popup__edit-profile popup__form" name="edit-profile" novalidate>
               <input 
                 type="text" 
                 value="" 
@@ -53,8 +53,7 @@
                 name="profile-name" 
                 required
                 id="name"
-                autocomplete="off"
-                />
+                autocomplete="off">
               <span id="name-error" class="popup__error_visible"></span>
               <input
                 type="text"
@@ -66,18 +65,17 @@
                 name="userjob"
                 required
                 id="job"
-                autocomplete="off"
-                />
+                autocomplete="off">
               <span id="job-error" class="popup__error_visible"></span>
             <button type="submit" class="popup__button" name="submit">Сохранить</button>
           </form>
         </div>
       </div>
       <div class="popup popup_type_add">
-        <div class="popup__form">
+        <div class="popup__container">
           <button type="button" class="popup__close" aria-label="close"></button>
           <h3 class="popup__suptitle">Новое место</h3>
-          <form class="popup__edit-addCard form__popup" name="edit-profile" novalidate>
+          <form class="popup__edit-addCard popup__form" name="edit-profile" novalidate>
             <input
               type="text"
               value=""
@@ -87,8 +85,7 @@
               name="profile-name"
               required
               id="place"
-              autocomplete="off"
-            />
+              autocomplete="off">
             <span id="place-error" class="popup__error_visible"></span>
             <input
               type="url"
@@ -98,8 +95,7 @@
               name="userjob"
               required
               id="link"
-              autocomplete="off"
-            />
+              autocomplete="off">
             <span id="link-error" class="popup__error_visible"></span>
             <button type="submit" class="popup__button" name="submit">Сохранить</button>
           </form>
