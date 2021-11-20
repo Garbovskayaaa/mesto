@@ -1,6 +1,6 @@
 .popup__button_disabled {
   background: hsl(0, 0%, 100%);
-  border: 1px solid  #E5E5E5;;
+  border: 1px solid  #E5E5E5;
   cursor: default;
   color:  #E5E5E5;
 }
