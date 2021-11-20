@@ -13,7 +13,7 @@
       <header class="header">
         <img class="header__logo" src="./image/logo.svg" alt="Логотип Место">
       </header>
-  
+
       <main class="content">
         <section class="profile">
           <div class="profile__custom">
@@ -34,16 +34,16 @@
           </ul>
         </section>
       </main>
-  
+
       <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
       </footer>
       
       <div class="popup popup_type_edit">
-        <div class="popup__form" novalidate>
+        <div class="popup__form">
           <button type="button" class="popup__close" aria-label="close"></button>
           <h3 class="popup__suptitle">Редактировать профиль</h3>
-          <form class="popup__edit-profile form__popup" name="edit-profile">
+          <form class="popup__edit-profile form__popup" name="edit-profile" novalidate>
               <input 
                 type="text" 
                 value="" 
@@ -55,7 +55,7 @@
                 id="name"
                 autocomplete="off"
                 />
-              <span id="name-error" class="error"></span>
+              <span id="name-error" class="popup__error_visible"></span>
               <input
                 type="text"
                 value="" 
@@ -68,16 +68,16 @@
                 id="job"
                 autocomplete="off"
                 />
-              <span id="job-error" class="error"></span>
-            <button type="submit" class="popup__submit" name="submit">Сохранить</button>
+              <span id="job-error" class="popup__error_visible"></span>
+            <button type="submit" class="popup__button" name="submit">Сохранить</button>
           </form>
         </div>
       </div>
       <div class="popup popup_type_add">
-        <div class="popup__form" novalidate>
+        <div class="popup__form">
           <button type="button" class="popup__close" aria-label="close"></button>
           <h3 class="popup__suptitle">Новое место</h3>
-          <form class="popup__edit-addCard form__popup" name="edit-profile">
+          <form class="popup__edit-addCard form__popup" name="edit-profile" novalidate>
             <input
               type="text"
               value=""
@@ -89,7 +89,7 @@
               id="place"
               autocomplete="off"
             />
-            <span id="place-error" class="error"></span>
+            <span id="place-error" class="popup__error_visible"></span>
             <input
               type="url"
               value=""
@@ -100,8 +100,8 @@
               id="link"
               autocomplete="off"
             />
-            <span id="link-error" class="error"></span>
-            <button type="submit" class="popup__submit" name="submit">Сохранить</button>
+            <span id="link-error" class="popup__error_visible"></span>
+            <button type="submit" class="popup__button" name="submit">Сохранить</button>
           </form>
         </div>
       </div>

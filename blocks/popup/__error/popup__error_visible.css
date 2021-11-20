@@ -1,4 +1,4 @@
-.error {
+.popup__error_visible {
   color: #FF0000;
   /* visibility: hidden; */
   margin: 0;

@@ -26,7 +26,7 @@ const popupAddCard = document.querySelector('.popup__edit-addCard'); // форм
 const cardElements = document.querySelector('.elements'); // сетка добавления new карточек
 const cardTemplateElement = document.querySelector('.template-card'); // форма template new карточек
 
-const saveCard = document.querySelector('.popup__submit'); // сохранить добавление new карточек
+const saveCard = document.querySelector('.popup__button'); // сохранить добавление new карточек
 const title = document.querySelector('.popup__input_title'); // форма наименование new карточки
 const link = document.querySelector('.popup__input_link'); // форма url new карточек
 
