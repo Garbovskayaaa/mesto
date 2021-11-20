@@ -4,7 +4,7 @@ enableValidation({
     submitButtonSelector: '.popup__button', //кнопка
     inactiveButtonClass: 'popup__button_disabled', //кнопка_отключена
     inputErrorClass: 'popup__input_type_error', 
-    errorClass: 'popup__error_visible' //всплывающая_ошибка
+    errorClass: 'popup__error-visible' //всплывающая_ошибка
   }); 
 
 function enableValidation() { // (должен быть объект с конфигом)
