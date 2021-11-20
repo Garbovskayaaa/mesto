@@ -8,7 +8,7 @@ enableValidation({
   }); 
 
 function enableValidation() { // (должен быть объект с конфигом)
-  const formSelector = Array.from(document.querySelectorAll('.form__popup'));
+  const formSelector = Array.from(document.querySelectorAll('.popup__form'));
   formSelector.forEach(addListenersToForm)
 }
 
