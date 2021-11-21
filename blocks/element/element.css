@@ -3,4 +3,21 @@
   border-radius: 10px;
   margin: 0 auto;
   position: relative;
+  min-height: 361px;
+  width: 282px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  .element {
+    width: 350px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .element {
+    width: 282px;
+  }
 }

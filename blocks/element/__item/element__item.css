@@ -6,6 +6,7 @@
   margin: 0;
   position: relative;
   cursor: pointer;
+  object-fit: fill;
 }
 
 @media (min-width: 768px) {

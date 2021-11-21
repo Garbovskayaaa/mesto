@@ -129,8 +129,8 @@ function addNewCardImg(evt) {
   const newInitialCards = createCard ({name: titleInput, link: linkInput});
   cardElements.prepend(newInitialCards);
   console.log(newInitialCards);
-  closePopup(popupCards);
   evt.currentTarget.reset();
+  closePopup(popupCards);
 }
 
 // функция открытия фотографии для просмотра 
