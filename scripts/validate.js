@@ -4,7 +4,7 @@ const obj = {
     submitButtonSelector: '.popup__button', //селектор кнопка сабмит формы
     inactiveButtonClass: 'popup__button_disabled', //кнопка_отключена
     inputErrorClass: 'popup__input_type_error', //Этот класс должен добавляться  когда введённые данные некорректны.
-    errorClass: 'popup__error_visible' //всплывающая_ошибка
+    errorClass: 'popup_error_visible' //всплывающая_ошибка
 };
 
 enableValidation(obj);
@@ -34,12 +34,12 @@ function handleFormInput(evt) {
 
 // Функция, которая добавляет класс с ошибкой
 const showInputError = (element) => {
-  element.classList.add('popup__error_visible');
+  element.classList.add('popup_error_visible');
 };
 
 // Функция, которая удаляет класс с ошибкой
 const hideInputError = (element) => {
-  element.classList.remove('popup__error_visible');
+  element.classList.remove('popup_error_visible');
 };
 
 // Функция, которая проверяет валидность поля
