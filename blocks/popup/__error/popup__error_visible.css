@@ -1,5 +1,5 @@
-.popup__error-visible {
-  color: #FF0000;
+.popup__error_visible {
+  color: red;
   margin: 0;
   margin-bottom: 5px;
   padding: 0;
@@ -8,5 +8,4 @@
   line-height: 14.52px;
   height: 30px;
   display: inline-block;
-  border-bottom-color: red;
 }

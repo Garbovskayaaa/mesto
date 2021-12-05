@@ -32,6 +32,9 @@ const link = document.querySelector('.popup__input_link'); // форма url new
 
 const popups = document.querySelectorAll('.popup')
 
+const titleInput = document.querySelector('.popup__input_title'); 
+const linkInput = document.querySelector('.popup__input_link');
+
 ////////////////////////////////////ФОРМА РЕДАКТИРОВАНИЯ ПРОФИЛЯ////////////////////////
 // функция закрытия попапа при клике на esc
 function closePopupEsc(evt) {
@@ -54,6 +57,7 @@ popups.forEach((popup) => {
     }
   })
 })
+
 // универсальный попап закрытия
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -66,6 +70,7 @@ function openPopupProfile() {
   jobInput.value = jobProfile.textContent;
   openPopup(popupEdit);
 }
+
 // Функция Обработчик «отправки» формы - редактирование профиля
 function submitFormHandler(evt) {
   evt.preventDefault(); 
@@ -75,34 +80,6 @@ function submitFormHandler(evt) {
 }
 
 //////////////////////////////////ДОБАВЛЯЕМ КАРТИНКИ//////////////////////////////////////
-//Добавление элементов из имеющегося массива
-const initialCards = [
-  {
-    name: "Байкал",
-    link: "https://s00.yaplakal.com/pics/pics_original/2/7/8/4104872.jpg",
-  },
-  {
-    name: "Дальний Восток",
-    link: "https://rusmystery.ru/wp-content/uploads/2018/11/yaponskoe.jpg",
-  },
-  {
-    name: "Река Лена",
-    link: "https://fotki.ykt.ru/albums/userpics/2015/09-29/dsc_3141.jpg",
-  },
-  {
-    name: "Сахалин",
-    link: "https://wallpapershome.ru/images/pages/pic_h/23351.jpg",
-  },
-  {
-    name: "Приморье",
-    link: "https://static.tildacdn.com/tild3137-3133-4037-b631-663832643431/45882029112_2981c7fe.jpg",
-  },
-  {
-    name: "Кольский полуостров",
-    link: "https://mtdata.ru/u3/photo2238/20197588453-0/original.jpg",
-  },
-];
-
 function createCard(item) {
   const addCard = cardTemplateElement.content.cloneNode(true);
   addCard.querySelector('.element__suptitle').textContent = item.name;
@@ -124,11 +101,8 @@ function renderElements(item) { //// методы
 // функция добавления фото из формы
 function addNewCardImg(evt) {
   evt.preventDefault();
-  const titleInput = evt.currentTarget.querySelector ('.popup__input_title').value; 
-  const linkInput = evt.currentTarget.querySelector ('.popup__input_link').value;
-  const newInitialCards = createCard ({name: titleInput, link: linkInput});
-  cardElements.prepend(newInitialCards);
-  console.log(newInitialCards);
+  const newCard = createCard ({name: titleInput.value, link: linkInput.value});
+  cardElements.prepend(newCard);
   evt.currentTarget.reset();
   closePopup(popupCards);
 }
@@ -161,5 +135,4 @@ popupAddOpen.addEventListener('click', () => openPopup(popupCards));
 popupAddClous.addEventListener('click', () => closePopup(popupCards));
 popupAddCard.addEventListener('submit', addNewCardImg); // отправка формы добавление новой карточки
 
-fotoPopupFull.addEventListener('click', () => openPopup(popupImageModal));
 imagePopupClose.addEventListener('click', () => closePopup(popupImageModal));
