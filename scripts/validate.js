@@ -1,87 +1,86 @@
-const obj = {
-    formSelector: '.popup__form', //Селектор формы
-    inputSelector: '.popup__input', //селектор инпута
-    submitButtonSelector: '.popup__button', //селектор кнопка сабмит формы
-    inactiveButtonClass: 'popup__button_disabled', //кнопка_отключена
-    inputErrorClass: 'popup__input_type_error', //Этот класс должен добавляться  когда введённые данные некорректны.
-    errorClass: 'popup__error-visible' //всплывающая_ошибка
+// Функция, добавляет класс с ошибкой
+const showInputError = (formElement, inputElement, errorMessage, form) => {
+  // Выбираем элемент ошибки на основе уникального класса
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.add(form.inputErrorClass);
+  // Заменим содержимое span с ошибкой на переданный параметр
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(form.errorClass);
 };
 
-enableValidation(obj);
-
-function enableValidation({formElement, ...rest}) { // (должен быть объект с конфигом) //нажимаем кнопку сохранить
-  // действие процесса наложения валидации
-  const forms = Array.from(document.querySelectorAll('.popup__form')); // находит форму
-  forms.forEach((formElement) => {
-      // обработчик событий чтобы она не сабмитилась
-      formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();   // предотвратить дефолтное поведение
-    });
-    addListenersToForm(formElement, rest);
-  })
+// Функция, удаляет класс с ошибкой
+const hideInputError = (formElement, inputElement, form) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.remove(form.inputErrorClass);
+  errorElement.classList.remove(form.errorClass);
+  // Очистим ошибку
+  errorElement.textContent = "";
 };
 
-function addListenersToForm(inputElement) {
-  const inputs = Array.from(inputElement.querySelectorAll('.popup__input'));
-  inputs.forEach(addListenersToInput)
-  inputElement.addEventListener('input', handleFormInput);
-  toggleButton(inputElement);
-};
-
-function handleFormInput(evt) {
-  toggleButton(evt.currentTarget);
-};
-
-// Функция, которая добавляет класс с ошибкой
-const showInputError = (element) => {
-  element.classList.add('popup__error-visible');
-};
-
-// Функция, которая удаляет класс с ошибкой
-const hideInputError = (element) => {
-  element.classList.remove('popup__error-visible');
-};
-
-// Функция, которая проверяет валидность поля
-const isValid = (formSelector, inputSelector) => {
-  if (!formSelector.validity.valid) {
-    // Если поле не проходит валидацию, покажем ошибку
-    showInputError(formSelector, inputSelector, inputSelector.validationMessage);
+//Функция, проверяет валидность поля
+const checkInputValidity = (formElement, inputElement, form) => {
+  // Если поле не проходит валидацию, покажем ошибку
+  if (!inputElement.validity.valid) {
+    showInputError(formElement,inputElement,inputElement.validationMessage,form);
   } else {
-    // Если проходит, скроем
-    hideInputError(formSelector, inputSelector);
+    // Если поле проходит валидацию, скроем ошибку
+    hideInputError(formElement, inputElement, form);
   }
 };
 
-function toggleButton(buttonElement) {
-  const buttonSubmit = buttonElement.querySelector('.popup__button');
-  const isInactiveButtonClass = !buttonElement.checkValidity();
-  buttonSubmit.disabled = isInactiveButtonClass;
-  buttonSubmit.classList.toggle('popup__button_disabled', isInactiveButtonClass);
+// Функция принимает массив полей
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
 };
 
-function addListenersToInput(inputElement) {
-  inputElement.addEventListener('input', hendleFieldValidation);
-};
-
-function hendleFieldValidation(evt) {
-  const element = evt.target;
-  const formError = document.querySelector(`#${element.id}-error`);
-  element.setCustomValidity('');
-  element.classList.toggle('popup__input_type_error', !element.validity.valid);
-  validateRequired(element);
-  validateURL(element);
-  formError.textContent = element.validationMessage;
-};
-
-function validateRequired(errorMessage) {
-  if (errorMessage.validity.valueMissing) {
-    errorMessage.setCustomValidity('Вы пропустили это поле.');
+// Проверка состояния кнопки
+const toggleButtonState = (inputList, buttonElement, form) => {
+// Если есть хотя бы один невалидный инпут
+  if (hasInvalidInput(inputList, form)) {
+// сделай кнопку неактивной
+    buttonElement.classList.add(form.inactiveButtonClass);
+    buttonElement.disabled = "disabled";
+  } else {
+  // иначе сделай кнопку активной
+    buttonElement.classList.remove(form.inactiveButtonClass);
+    buttonElement.disabled = "";
   }
 };
 
-function validateURL(errorMessage) { 
-  if (errorMessage.validity.typeMismatch) { 
-    errorMessage.setCustomValidity('Введите адрес сайта.'); 
-  } 
+// Добавление полей ошибок всем полям
+const setEventListeners = (formElement, form) => {
+  const inputList = Array.from(formElement.querySelectorAll(form.inputSelector));
+  const buttonElement = formElement.querySelector(form.submitButtonSelector);
+// чтобы проверить состояние кнопки в самом начале
+  toggleButtonState(inputList, buttonElement, form);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", () => {
+      checkInputValidity(formElement, inputElement, form);
+      // чтобы проверять его при изменении любого из полей
+      toggleButtonState(inputList, buttonElement, form);
+    });
+  });
 };
+
+// Перебор всех форм
+const enableValidation = (form) => {
+  const formList = Array.from(document.querySelectorAll(form.formSelector));
+  formList.forEach((formElement) => {
+    formElement.addEventListener("submit", (evt) => {
+      // Отменим стандартное поведение по сабмиту
+      evt.preventDefault();
+    });
+    setEventListeners(formElement, form);
+  });
+};
+
+enableValidation ({
+  formSelector: ".popup__form", //Селектор формы
+  inputSelector: ".popup__input", //селектор инпута
+  submitButtonSelector: ".popup__button", //селектор кнопка сабмит формы
+  inactiveButtonClass: "popup__button_disabled", //кнопка_отключена
+  inputErrorClass: "popup__input_type_error", // появляется border-bottom: red;
+  errorClass: "popup__error-visible", //всплывающая_ошибка
+});

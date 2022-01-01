@@ -44,16 +44,17 @@
           <button type="button" class="popup__close" aria-label="close"></button>
           <h3 class="popup__suptitle">Редактировать профиль</h3>
           <form class="popup__edit-profile popup__form" name="edit-profile" novalidate>
-              <input 
+              <input
                 type="text"
-                value="" 
-                placeholder="Имя" 
-                class="popup__input popup__input_user_name" 
-                minlength="2" maxlength="40" 
-                name="profile-name" 
+                value=""
+                placeholder="Имя"
+                class="popup__input popup__input_user_name"
+                minlength="2" maxlength="40"
+                name="profile-name"
                 required
                 id="name"
-                autocomplete="off">
+                autocomplete="off"
+                >
               <span id="name-error" class="popup__error-visible"></span>
               <input
                 type="text"
@@ -118,9 +119,9 @@
           <button type="button" class="element__mask" arial-label="like"></button>
         </li>
       </template>
+      <script src="./scripts/validate.js"></script>
       <script src="./scripts/cards.js"></script>
       <script src="./scripts/script.js"></script>
-      <script src="./scripts/validate.js"></script>
     </div>
   </body>
 </html>
