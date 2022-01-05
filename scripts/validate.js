@@ -40,21 +40,28 @@ const toggleButtonState = (inputList, buttonElement, form) => {
 // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList, form)) {
 // сделай кнопку неактивной
+buttonElement.disabled = "disabled"; 
     buttonElement.classList.add(form.inactiveButtonClass);
-    buttonElement.disabled = "disabled";
   } else {
   // иначе сделай кнопку активной
     buttonElement.classList.remove(form.inactiveButtonClass);
-    buttonElement.disabled = "";
+    buttonElement.disabled = ""; 
   }
 };
 
 // Добавление полей ошибок всем полям
 const setEventListeners = (formElement, form) => {
-  const inputList = Array.from(formElement.querySelectorAll(form.inputSelector));
+  const inputList = Array.from(
+    formElement.querySelectorAll(form.inputSelector));
   const buttonElement = formElement.querySelector(form.submitButtonSelector);
-// чтобы проверить состояние кнопки в самом начале
+  // чтобы проверить состояние кнопки в самом начале
   toggleButtonState(inputList, buttonElement, form);
+  const openAddButtons = Array.from(document.querySelectorAll(".profile__add-button"));
+  openAddButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      toggleButtonState(inputList, buttonElement, form);
+    });
+  });
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkInputValidity(formElement, inputElement, form);
@@ -84,3 +91,4 @@ enableValidation ({
   inputErrorClass: "popup__input_type_error", // появляется border-bottom: red;
   errorClass: "popup__error-visible", //всплывающая_ошибка
 });
+
