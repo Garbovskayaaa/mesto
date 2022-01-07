@@ -35,13 +35,13 @@ function closePopupEsc(evt) {
     const currentPopup = document.querySelector('.popup_opened');
     closePopup(currentPopup);
     }
-}
+};
 
 // универсальный попап открытие
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
-}
+};
 
 // попап закрытия Оверлей/Крестик
 popups.forEach((popup) => {
@@ -53,20 +53,20 @@ popups.forEach((popup) => {
       closePopup(popup)
     }
   })
-})
+});
 
 // универсальный попап закрытия
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
-}
+};
 
 // Функция открытие - редактирование профиля
 function openPopupProfile() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
   openPopup(popupEdit);
-}
+};
 
 // Функция Обработчик «отправки» формы - редактирование профиля
 function handleProfileFormSubmit(evt) {
@@ -74,7 +74,7 @@ function handleProfileFormSubmit(evt) {
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
   closePopup(popupEdit);
-}
+};
 
 //////////////////////////////////ДОБАВЛЯЕМ КАРТИНКИ//////////////////////////////////////
 function createCard(item) {
@@ -84,17 +84,17 @@ function createCard(item) {
   cardImage.alt = item.name;
   addCard.querySelector('.element__suptitle').textContent = item.name;
   addCard.querySelector('.element__mask').addEventListener('click', toggleLike);
-  addCard.querySelector('.element__item').addEventListener('click', openPhoto);
+  cardImage.addEventListener('click', openPhoto);
   addCard.querySelector('.element__delete').addEventListener('click', deleteCard);
   return addCard;
-}
+};
 
 initialCards.map(renderElements); // новый массив
 
 function renderElements(item) { //// методы
   const addCard = createCard(item);
   cardElements.prepend(addCard); // вставка новой картинки в начало
-}
+};
 
 // функция добавления фото из формы
 function addNewCardImg(evt) {
@@ -103,7 +103,7 @@ function addNewCardImg(evt) {
   cardElements.prepend(newCard);
   evt.currentTarget.reset();
   closePopup(popupCards);
-}
+};
 
 // функция открытия фотографии для просмотра 
 function openPhoto (evt) {
@@ -111,18 +111,18 @@ function openPhoto (evt) {
   fotoPopupFull.alt = evt.currentTarget.alt;
   fotoPopupTxt.textContent = evt.currentTarget.alt;
   openPopup(popupImageModal);
-}
+};
 
 ////////////////////////////////// ЛАЙК //////////////////////////////////////////////////////
 function toggleLike(evt) {
   evt.target.classList.toggle('element__mask_active'); 
-}
+};
 
 ///////////////////////////////УДАЛЕНИЕ КАРТИНКИ/////////////////////////////////////////////
 function deleteCard(evt) {
   const deleteFoto = evt.currentTarget.closest('.element');
   deleteFoto.remove();
-}
+};
 
 /////////////////////////// РЕГИСТРАЦИЯ ОТРАБОТЧИКОВ ////////////////////////////////////////
 profileOpenBtn.addEventListener('click', () => openPopupProfile(popupEdit));

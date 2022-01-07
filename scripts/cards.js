@@ -10,7 +10,7 @@ const initialCards = [
     },
     {
       name: "Река Лена",
-      link: "https://pbs.twimg.com/media/DLYMk6QXUAARh2R.jpg",
+      link: "https://i0.wp.com/img-fotki.yandex.ru/get/6744/42670583.48/0_ed6f0_d27cc61a_orig.jpg",
     },
     {
       name: "Сахалин",

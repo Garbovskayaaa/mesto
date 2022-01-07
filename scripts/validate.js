@@ -51,16 +51,16 @@ buttonElement.disabled = "disabled";
 
 // Добавление полей ошибок всем полям
 const setEventListeners = (formElement, form) => {
-  const inputList = Array.from(
-    formElement.querySelectorAll(form.inputSelector));
+  const inputList = Array.from(formElement.querySelectorAll(form.inputSelector));
   const buttonElement = formElement.querySelector(form.submitButtonSelector);
   // чтобы проверить состояние кнопки в самом начале
   toggleButtonState(inputList, buttonElement, form);
-  const openAddButtons = Array.from(document.querySelectorAll(".profile__add-button"));
-  openAddButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      toggleButtonState(inputList, buttonElement, form);
-    });
+  formElement.addEventListener("reset", (evt) => {
+    // При очистке формы через метод reset вызывается событие reset - вот как раз мы его тут ловим и управляем кнопкой
+    // нужен для того, чтобы управление кнопкой сработало только после полной очистки инпутов, тогда кнопка деактивируется
+    setTimeout(() => {
+      toggleButtonState(inputList, buttonElement, form)
+    })
   });
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
