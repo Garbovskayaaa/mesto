@@ -25,6 +25,8 @@
 @import url('../blocks/element/__suptitle/element__suptitle.css');
 @import url('../blocks/element/__delete/element__delete.css');
 
+@import url('../blocks/content/content.css');
+
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
 
