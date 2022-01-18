@@ -77,19 +77,19 @@ function handleProfileFormSubmit(evt) {
 };
 
 //////////////////////////////////ДОБАВЛЯЕМ КАРТИНКИ//////////////////////////////////////
-function createCard(item) {
-  const addCard = cardTemplateElement.content.cloneNode(true);
-  const cardImage = addCard.querySelector('.element__item');
-  cardImage.src = item.link;
-  cardImage.alt = item.name;
-  addCard.querySelector('.element__suptitle').textContent = item.name;
-  addCard.querySelector('.element__mask').addEventListener('click', toggleLike);
-  cardImage.addEventListener('click', openPhoto);
-  addCard.querySelector('.element__delete').addEventListener('click', deleteCard);
-  return addCard;
-};
+// function createCard(item) {
+  // const addCard = cardTemplateElement.content.cloneNode(true);
+  // const cardImage = addCard.querySelector('.element__item');
+  // cardImage.src = item.link;
+  // cardImage.alt = item.name;
+  // addCard.querySelector('.element__suptitle').textContent = item.name;
+  // addCard.querySelector('.element__mask').addEventListener('click', toggleLike);
+  // cardImage.addEventListener('click', openPhoto);
+  // addCard.querySelector('.element__delete').addEventListener('click', deleteCard);
+  // return addCard;
+// };
 
-initialCards.map(renderElements); // новый массив
+// initialCards.map(renderElements); // новый массив
 
 function renderElements(item) { //// методы
   const addCard = createCard(item);
@@ -106,12 +106,12 @@ function addNewCardImg(evt) {
 };
 
 // функция открытия фотографии для просмотра 
-function openPhoto (evt) {
-  fotoPopupFull.src = evt.target.src;
-  fotoPopupFull.alt = evt.currentTarget.alt;
-  fotoPopupTxt.textContent = evt.currentTarget.alt;
-  openPopup(popupImageModal);
-};
+// function openPhoto (evt) {
+//   fotoPopupFull.src = evt.target.src;
+//   fotoPopupFull.alt = evt.currentTarget.alt;
+//   fotoPopupTxt.textContent = evt.currentTarget.alt;
+//   openPopup(popupImageModal);
+// };
 
 ////////////////////////////////// ЛАЙК //////////////////////////////////////////////////////
 function toggleLike(evt) {

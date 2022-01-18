@@ -91,4 +91,3 @@ enableValidation ({
   inputErrorClass: "popup__input_type_error", // появляется border-bottom: red;
   errorClass: "popup__error-visible", //всплывающая_ошибка
 });
-
