@@ -30,30 +30,30 @@ const linkInput = document.querySelector('.popup__input_link'); // форма ur
 
 ////////////////////////////////////ФОРМА РЕДАКТИРОВАНИЯ ПРОФИЛЯ////////////////////////
 // функция закрытия попапа при клике на esc
-function closePopupEsc(evt) {
-  if (evt.key === 'Escape') {
-    const currentPopup = document.querySelector('.popup_opened');
-    closePopup(currentPopup);
-    }
-};
+// function closePopupEsc(evt) {
+//   if (evt.key === 'Escape') {
+//     const currentPopup = document.querySelector('.popup_opened');
+//     closePopup(currentPopup);
+//     }
+// };
 
-// универсальный попап открытие
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupEsc);
-};
+// // универсальный попап открытие
+// function openPopup(popup) {
+//   popup.classList.add('popup_opened');
+//   document.addEventListener('keydown', closePopupEsc);
+// };
 
-// попап закрытия Оверлей/Крестик
-popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup)
-    }
-    if (evt.target.classList.contains('popup__close')) {
-      closePopup(popup)
-    }
-  })
-});
+  // // попап закрытия Оверлей/Крестик
+  // popups.forEach((popup) => {
+  //   popup.addEventListener('click', (evt) => {
+  //     if (evt.target.classList.contains('popup_opened')) {
+  //       closePopup(popup)
+  //     }
+  //     if (evt.target.classList.contains('popup__close')) {
+  //       closePopup(popup)
+  //     }
+  //   })
+  // });
 
 // универсальный попап закрытия
 function closePopup(popup) {
@@ -114,15 +114,15 @@ function addNewCardImg(evt) {
 // };
 
 ////////////////////////////////// ЛАЙК //////////////////////////////////////////////////////
-function toggleLike(evt) {
-  evt.target.classList.toggle('element__mask_active'); 
-};
+// function toggleLike(evt) {
+//   evt.target.classList.toggle('element__mask_active'); 
+// };
 
 ///////////////////////////////УДАЛЕНИЕ КАРТИНКИ/////////////////////////////////////////////
-function deleteCard(evt) {
-  const deleteFoto = evt.currentTarget.closest('.element');
-  deleteFoto.remove();
-};
+// function deleteCard(evt) {
+//   const deleteFoto = evt.currentTarget.closest('.element');
+//   deleteFoto.remove();
+// };
 
 /////////////////////////// РЕГИСТРАЦИЯ ОТРАБОТЧИКОВ ////////////////////////////////////////
 profileOpenBtn.addEventListener('click', () => openPopupProfile(popupEdit));

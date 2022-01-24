@@ -1,7 +1,9 @@
-const popupImage = document.querySelector('.popup__foto');
-const popupElement = document.querySelector('.popup_type_image');
-const popupCloseButton = document.querySelector('.popup__close');
+import { closePopupEsc, openPopup } from './index.js'; 
 
+const popupImageModal = document.querySelector('.popup_type_image'); // картинка
+const fotoPopupFull = document.querySelector('.popup__foto'); // картинка
+const fotoPopupTxt = document.querySelector('.popup__foto-name'); // наименование картинки
+const popupCloseButton = document.querySelector('.popup__close');
 
 export default class Card {
   constructor (name, link) {
@@ -21,35 +23,48 @@ export default class Card {
   // вернём DOM-элемент карточки
     return cardElement;
   }
+  
+  _handleClickLike = () => {
+    // Лайк
+    this._element.querySelector('.element__mask').classList.toggle('element__mask_active');
+  }
+
+  _removeElement = () => {
+    // удаление картинки
+    this._element.remove();
+  }
+
+  _handleOpenPopup = (evt) => {
+    fotoPopupFull.src = this._link;
+    fotoPopupFull.alt = evt.currentTarget.alt;
+    fotoPopupTxt.textContent = this._name;
+    popupImageModal.classList.add('popup_opened');
+  }
+
+  _handleClosePopup = () => {
+    if (evt.key === 'Escape') {
+    popupImageModal.classList.remove('popup_opened')
+    document.removeEventListener('keydown', closePopupEsc);
+    }
+  }
 
   generateCard() {
     // Запишем разметку в приватное поле _element. 
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplate();
+    const elementCard = this._element.querySelector('.element__item');
     // Добавим данные
-    this._element.querySelector('.element__item').src = this._link;
+    elementCard.src = this._link;
     this._element.querySelector('.element__suptitle').textContent = this._name;
-  
+    this._element.querySelector('.element__delete').addEventListener('click', this._removeElement);
+    this._element.querySelector('.element__mask').addEventListener('click', this._handleClickLike);
+    elementCard.addEventListener('click', this._handleOpenPopup);
+
+
     return this._element; 
   }
-
-  _handleOpenPopup() {
-    popupImage.src = this._link;
-    popupElement.classList.add('popup_opened');
-  }
-
-  _handleClosePopup() {
-    popupImage.src = '';
-    popupElement.classList.remove('popup_opened');
-  }
-
   _setEventListeners() {
-    this._element.addEventListener('click', () => {
-      this._handleOpenPopup();
-    });
-
-    popupCloseButton.addEventListener('click', () => {
-      this._handleClosePopup();
-    });
+    popupCloseButton.addEventListener('click', this._handleClosePopup);
   }
 }
+
