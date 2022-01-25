@@ -29,21 +29,21 @@ const titleInput = document.querySelector('.popup__input_title'); // форма 
 const linkInput = document.querySelector('.popup__input_link'); // форма url new карточек
 
 ////////////////////////////////////ФОРМА РЕДАКТИРОВАНИЯ ПРОФИЛЯ////////////////////////
-// функция закрытия попапа при клике на esc
+// // функция закрытия попапа при клике на esc
 // function closePopupEsc(evt) {
 //   if (evt.key === 'Escape') {
 //     const currentPopup = document.querySelector('.popup_opened');
 //     closePopup(currentPopup);
-//     }
+//   }
 // };
 
-// // универсальный попап открытие
+// // // универсальный попап открытие
 // function openPopup(popup) {
 //   popup.classList.add('popup_opened');
 //   document.addEventListener('keydown', closePopupEsc);
 // };
 
-  // // попап закрытия Оверлей/Крестик
+  // // // попап закрытия Оверлей/Крестик
   // popups.forEach((popup) => {
   //   popup.addEventListener('click', (evt) => {
   //     if (evt.target.classList.contains('popup_opened')) {
@@ -55,18 +55,18 @@ const linkInput = document.querySelector('.popup__input_link'); // форма ur
   //   })
   // });
 
-// универсальный попап закрытия
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupEsc);
-};
+// // универсальный попап закрытия
+// function closePopup(popup) {
+//   popup.classList.remove('popup_opened');
+//   document.removeEventListener('keydown', closePopupEsc);
+// };
 
 // Функция открытие - редактирование профиля
-function openPopupProfile() {
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
-  openPopup(popupEdit);
-};
+// function openPopupProfile() {
+//   nameInput.value = nameProfile.textContent;
+//   jobInput.value = jobProfile.textContent;
+//   openPopup(popupEdit);
+// };
 
 // Функция Обработчик «отправки» формы - редактирование профиля
 function handleProfileFormSubmit(evt) {
@@ -125,8 +125,8 @@ function addNewCardImg(evt) {
 // };
 
 /////////////////////////// РЕГИСТРАЦИЯ ОТРАБОТЧИКОВ ////////////////////////////////////////
-profileOpenBtn.addEventListener('click', () => openPopupProfile(popupEdit));
-formEdit.addEventListener('submit', handleProfileFormSubmit);
+// profileOpenBtn.addEventListener('click', () => openPopupProfile(popupEdit));
+// formEdit.addEventListener('submit', handleProfileFormSubmit);
 
-popupAddOpen.addEventListener('click', () => openPopup(popupCards));
-popupAddCard.addEventListener('submit', addNewCardImg); // отправка формы добавление новой карточки
+// popupAddOpen.addEventListener('click', () => openPopup(popupCards));
+// popupAddCard.addEventListener('submit', addNewCardImg); // отправка формы добавление новой карточки
