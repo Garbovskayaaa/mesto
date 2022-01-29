@@ -35,3 +35,6 @@ initialCards.forEach((item) => {
 
   document.querySelector('.elements').append(cardElement);
 });
+
+const selector = document.querySelector('.popup');
+const Form = new FormValidator()

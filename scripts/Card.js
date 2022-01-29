@@ -6,18 +6,6 @@ const popupCloseButton = document.querySelector('.popup__close');
 const popupAddOpen = document.querySelector('.profile__add-button'); // кнопка открытия добавления new карточек
 const profileOpenBtn = document.querySelector('.profile__edit-button'); // кнопка открытия edit профиль
 
-// // Функция открытие - редактирование профиля
-// function openPopupProfile() {
-//   nameInput.value = nameProfile.textContent;
-//   jobInput.value = jobProfile.textContent;
-//   openPopup(popupEdit);
-// };
-
-// // универсальный попап открытие
-// function openPopup(popup) {
-//   popup.addEventListener('keydown' === 'Escape');
-// };
-
 // попап закрытия=Крестик
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
