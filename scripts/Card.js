@@ -1,63 +1,22 @@
-const popups = document.querySelectorAll('.popup')
-const popupImageModal = document.querySelector('.popup_type_image'); // картинка
-const fotoPopupFull = document.querySelector('.popup__foto'); // картинка
-const fotoPopupTxt = document.querySelector('.popup__foto-name'); // наименование картинки
-const popupCloseButton = document.querySelector('.popup__close');
-const popupAddOpen = document.querySelector('.profile__add-button'); // кнопка открытия добавления new карточек
-const profileOpenBtn = document.querySelector('.profile__edit-button'); // кнопка открытия edit профиль
-
-// попап закрытия=Крестик
-popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup)
-    }
-    if (evt.target.classList.contains('popup__close')) {
-      closePopup(popup)
-    }
-  })
-});
-
-// функция закрытия попапа при клике на esc
-function closePopupEsc(evt) {
-  if (evt.key === 'Escape') {
-    const currentPopup = document.querySelector('.popup_opened');
-    closePopup(currentPopup);
-  }
-};
-
-document.addEventListener("keydown", function (evt) {
-  if (evt.key === 'Escape') {
-    const currentPopup = document.querySelector('popup_opened');
-    closePopup(currentPopup);
-  }
-});
-
-// универсальный попап закрытия
-function closePopup() {
-  popupImageModal.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupEsc);
-}
-
 export default class Card {
   constructor (name, link) {
     this._link = link;
     this._name = name;
   }
 
- // здесь выполним все необходимые операции, чтобы вернуть разметку Работа с шаблоном разметки
   _getTemplate() {
-  // забираем разметку из HTML и клонируем элемент
+    // здесь выполним все необходимые операции, чтобы вернуть разметку Работа с шаблоном разметки
+    // забираем разметку из HTML и клонируем элемент
     const cardElement = document
     .querySelector('.template-card')
     .content
     .querySelector('.element')
     .cloneNode(true);
 
-  // вернём DOM-элемент карточки
+    // вернём DOM-элемент карточки
     return cardElement;
   }
-  
+
   _handleClickLike = () => {
     // Лайк
     this._element.querySelector('.element__mask').classList.toggle('element__mask_active');
@@ -69,10 +28,11 @@ export default class Card {
   }
 
   _handleOpenPopup = (evt) => {
-    fotoPopupFull.src = this._link;
-    fotoPopupFull.alt = evt.currentTarget.alt;
-    fotoPopupTxt.textContent = this._name;
-    popupImageModal.classList.add('popup_opened');
+    const popupFoto = document.querySelector('.popup__foto');
+    popupFoto.src = this._link;
+    popupFoto.alt = evt.currentTarget.alt;
+    document.querySelector('.popup__foto-name').textContent = this._name;
+    document.querySelector('.popup_type_image').classList.add('popup_opened');  
   }
 
   generateCard() {
@@ -87,9 +47,5 @@ export default class Card {
     this._element.querySelector('.element__delete').addEventListener('click', this._removeElement);
     this._element.querySelector('.element__mask').addEventListener('click', this._handleClickLike);
     return this._element; 
-  }
-  
-  _setEventListeners() {
-    popupCloseButton.addEventListener('click', this._handleClosePopup);
   }
 }
