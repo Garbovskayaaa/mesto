@@ -15,12 +15,9 @@ const popupAddOpen = document.querySelector(".profile__add-button"); // кноп
 // Открытие картинок
 const popupAddCard = document.querySelector(".popup__edit-addCard"); // форма ввода url и наименование new карточек
 const cardElements = document.querySelector(".elements"); // сетка добавления new карточек
-const saveCard = document.querySelector(".popup__button"); // сохранить изменение
 const popups = document.querySelectorAll(".popup");
 const titleInput = document.querySelector(".popup__input_title"); // форма наименование new карточки
 const linkInput = document.querySelector(".popup__input_link"); // форма url new карточек
-const formList = document.querySelectorAll(".popup__form");
-
 //Добавление элементов из имеющегося массива
 const initialCards = [
   {
@@ -48,17 +45,15 @@ const initialCards = [
     link: "https://mtdata.ru/u3/photo2238/20197588453-0/original.jpg",
   },
 ];
-const validationProps = {
+
+const enableValidations = ({
   formSelector: ".popup__form", //Селектор формы
   inputSelector: ".popup__input", //селектор инпута
   submitButtonSelector: ".popup__button", //селектор кнопка сабмит формы
   inactiveButtonClass: "popup__button_disabled", //кнопка_отключена
   inputErrorClass: "popup__input_type_error", // появляется border-bottom: red;
   errorClass: "popup__error-visible", //всплывающая_ошибка
-};
-
-const formValidators = {};
-
+});
 
 function closePopupEsc(evt) {
   if (evt.key === "Escape") {
@@ -110,7 +105,6 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-  checkInputValidity();
   closePopup(popupEdit);
 }
 
@@ -132,3 +126,9 @@ popupAddCard.addEventListener("submit", (evt) => {
 profileOpenBtn.addEventListener("click", () => openPopupProfile(popupEdit));
 formEdit.addEventListener("submit", handleProfileFormSubmit);
 popupAddOpen.addEventListener("click", () => openPopup(popupCards));
+
+const cardFormValidator = new FormValidator(enableValidations, popupAddCard);
+const editFormValidator = new FormValidator(enableValidations, formEdit);
+
+cardFormValidator.enableValidation();
+editFormValidator.enableValidation();

@@ -1,90 +1,88 @@
 export default class FormValidator {
-  constructor(data, form) {
+  constructor(data, formElement) {
+    this._formElement = formElement;
     this._inputSelector = data.inputSelector;
     this._submitButtonSelector = data.submitButtonSelector;
     this._inactiveButtonClass = data.inactiveButtonClass;
     this._inputErrorClass = data.inputErrorClass;
-    this._form = form;
   }
 
   /// Функция, добавляет класс с ошибкой
-  _showInputError = (inputElement, errorMessage) => {
+  _showInputError = (inputElement) => {
     // Выбираем элемент ошибки на основе уникального класса
-    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
+    this._errorElement = document.querySelector(`#${inputElement.id}-error`);
+    
     inputElement.classList.add(this._inputErrorClass);
-    // Заменим содержимое span с ошибкой на переданный параметр
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add(this._errorClass);
+    this._errorElement.textContent = inputElement.validationMessage;
+    this._errorElement.classList.add(this._errorClass);
   };
 
   // Функция, удаляет класс с ошибкой
   _hideInputError = (inputElement) => {
-    const errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
+    this._errorElement = document.querySelector(`#${inputElement.id}-error`);
+    
     inputElement.classList.remove(this._inputErrorClass);
-    errorElement.classList.remove(this._errorClass);
-    // Очистим ошибку
-    errorElement.textContent = "";
+    this._errorElement.classList.remove(this._errorClass);
+    this._errorElement.textContent = "";
   };
 
   //Функция, проверяет валидность поля
   _checkInputValidity = (inputElement) => {
     // Если поле не проходит валидацию, покажем ошибку
     if (!inputElement.validity.valid) {
-      this._showInputError(inputElement,inputElement.validationMessage);
+      this._showInputError(inputElement);
     } else {
       // Если поле проходит валидацию, скроем ошибку
       this._hideInputError(inputElement);
     }
   };
   // Функция принимает массив полей
-  _hasInvalidInput = (inputList) => {
-    return inputList.some((inputElement) => {
-      return !inputElement.validity.valid;
-    });
-  };
+  _hasInvalidInput = () => {
+    return this._inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
   // // Проверка состояния кнопки
-  _toggleButtonState = (inputList, buttonElement) => {
+  _toggleButtonState = () => {
     // Если есть хотя бы один невалидный инпут
-    if (this._hasInvalidInput(inputList)) {
+    if (this._hasInvalidInput()) {
       // сделай кнопку неактивной
-      buttonElement.disabled = "disabled";
-      buttonElement.classList.add(this._inactiveButtonClass);
+      this._buttonElement.classList.add(this._inactiveButtonClass);
+      this._buttonElement.disabled = 'disabled';
     } else {
       // иначе сделай кнопку активной
-      buttonElement.classList.remove(this._inactiveButtonClass);
-      buttonElement.disabled = "";
+      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._buttonElement.disabled = ''; 
     }
   };
   // Добавление полей ошибок всем полям
   _setEventListeners = () => {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._inputList = Array.from(document.querySelectorAll(this._inputSelector));
+    
+    this._buttonElement = document.querySelector(this._submitButtonSelector);
+    
     // чтобы проверить состояние кнопки в самом начале
-    this._toggleButtonState(inputList, buttonElement);
-    this._formElement.addEventListener("reset", (evt) => {
+    this._toggleButtonState();
+
+    this._buttonElement.addEventListener("reset", (evt) => {
       // При очистке формы через метод reset вызывается событие reset - вот как раз мы его тут ловим и управляем кнопкой
       // нужен для того, чтобы управление кнопкой сработало только после полной очистки инпутов, тогда кнопка деактивируется
       setTimeout(() => {
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState();
       });
     });
-    inputList.forEach((inputElement) => {
+
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
         // чтобы проверять его при изменении любого из полей
-        this.__toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState();
       });
     });
   };
+
 // Перебор всех форм  
-  enableValidation = () => { 
-  const formList = Array.from(document.querySelectorAll(this._formSelector)); 
-  formList.forEach((formElement) => { 
-    formElement.addEventListener("submit", (evt) => { 
-      // Отменим стандартное поведение по сабмиту 
-      evt.preventDefault(); 
-    }); 
-    this._setEventListeners(formElement); 
-    }); 
+  enableValidation = () => {
+    this._setEventListeners(); 
   };
 }
