@@ -7,10 +7,23 @@ export default class FormValidator {
     this._inputErrorClass = data.inputErrorClass;
   }
 
+  // // Проверка состояния кнопки
+  _toggleButtonState = () => {
+    // Если есть хотя бы один невалидный инпут
+    if (this._hasInvalidInput()) {
+      // сделай кнопку неактивной
+      this._buttonElement.classList.add(this._inactiveButtonClass);
+      this._buttonElement.disabled = 'disabled';
+    } else {
+      // иначе сделай кнопку активной
+      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._buttonElement.disabled = ''; 
+    }
+  };
   /// Функция, добавляет класс с ошибкой
   _showInputError = (inputElement) => {
     // Выбираем элемент ошибки на основе уникального класса
-    this._errorElement = document.querySelector(`#${inputElement.id}-error`);
+    this._errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     
     inputElement.classList.add(this._inputErrorClass);
     this._errorElement.textContent = inputElement.validationMessage;
@@ -19,7 +32,7 @@ export default class FormValidator {
 
   // Функция, удаляет класс с ошибкой
   _hideInputError = (inputElement) => {
-    this._errorElement = document.querySelector(`#${inputElement.id}-error`);
+    this._errorElement = this._formElement.querySelector(`#${inputElement.id}-error`);
     
     inputElement.classList.remove(this._inputErrorClass);
     this._errorElement.classList.remove(this._errorClass);
@@ -36,30 +49,19 @@ export default class FormValidator {
       this._hideInputError(inputElement);
     }
   };
+
   // Функция принимает массив полей
   _hasInvalidInput = () => {
     return this._inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
+      return !inputElement.validity.valid;
   });
 };
-  // // Проверка состояния кнопки
-  _toggleButtonState = () => {
-    // Если есть хотя бы один невалидный инпут
-    if (this._hasInvalidInput()) {
-      // сделай кнопку неактивной
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.disabled = 'disabled';
-    } else {
-      // иначе сделай кнопку активной
-      this._buttonElement.classList.remove(this._inactiveButtonClass);
-      this._buttonElement.disabled = ''; 
-    }
-  };
+
   // Добавление полей ошибок всем полям
   _setEventListeners = () => {
-    this._inputList = Array.from(document.querySelectorAll(this._inputSelector));
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     
-    this._buttonElement = document.querySelector(this._submitButtonSelector);
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     
     // чтобы проверить состояние кнопки в самом начале
     this._toggleButtonState();

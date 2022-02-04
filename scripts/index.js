@@ -13,11 +13,14 @@ const profileOpenBtn = document.querySelector(".profile__edit-button"); // кн�
 const popupCards = document.querySelector(".popup_type_add"); // модал добавления new карточек
 const popupAddOpen = document.querySelector(".profile__add-button"); // кнопка открытия добавления new карточек
 // Открытие картинок
+
+
 const popupAddCard = document.querySelector(".popup__edit-addCard"); // форма ввода url и наименование new карточек
 const cardElements = document.querySelector(".elements"); // сетка добавления new карточек
 const popups = document.querySelectorAll(".popup");
 const titleInput = document.querySelector(".popup__input_title"); // форма наименование new карточки
 const linkInput = document.querySelector(".popup__input_link"); // форма url new карточек
+
 //Добавление элементов из имеющегося массива
 const initialCards = [
   {
@@ -60,7 +63,7 @@ function closePopupEsc(evt) {
     const popup = document.querySelector(".popup_opened");
     closePopup(popup);
   }
-}
+};
 
 document.addEventListener("keydown", function (evt) {
   if (evt.key === "Escape") {
@@ -73,13 +76,13 @@ document.addEventListener("keydown", function (evt) {
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closePopupEsc);
-}
+};
 
 // универсальный попап закрытия
 function closePopup(popup) {
   document.removeEventListener("keydown", closePopupEsc);
   popup.classList.remove("popup_opened");
-}
+};
 
 // попап закрытия Оверлей/Крестик
 popups.forEach((popup) => {
@@ -98,7 +101,7 @@ function openPopupProfile() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
   openPopup(popupEdit);
-}
+};
 
 // Функция Обработчик «отправки» формы - редактирование профиля
 function handleProfileFormSubmit(evt) {
@@ -106,12 +109,12 @@ function handleProfileFormSubmit(evt) {
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
   closePopup(popupEdit);
-}
+};
 
 function addNewCardImg(titleInput, linkInput) {
   const newCard = new Card({ name: titleInput, link: linkInput });
   return newCard.generateCard();
-}
+};
 
 initialCards.forEach((item) => {
   cardElements.append(addNewCardImg(item.name, item.link));
@@ -127,8 +130,7 @@ profileOpenBtn.addEventListener("click", () => openPopupProfile(popupEdit));
 formEdit.addEventListener("submit", handleProfileFormSubmit);
 popupAddOpen.addEventListener("click", () => openPopup(popupCards));
 
-const cardFormValidator = new FormValidator(enableValidations, popupAddCard);
 const editFormValidator = new FormValidator(enableValidations, formEdit);
-
+const cardFormValidator = new FormValidator(enableValidations, popupAddCard);
 cardFormValidator.enableValidation();
 editFormValidator.enableValidation();

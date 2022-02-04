@@ -2,7 +2,7 @@ export default class Card {
   constructor(data) {
     this._link = data.link;
     this._name = data.name;
-  }
+  };
 
   _getTemplate() {
     // здесь выполним все необходимые операции, чтобы вернуть разметку Работа с шаблоном разметки
@@ -15,7 +15,7 @@ export default class Card {
 
     // вернём DOM-элемент карточки
     return cardElement;
-  }
+  };
 
   _handleClickLike = () => {
     // Лайк
@@ -49,5 +49,5 @@ export default class Card {
     this._element.querySelector(".element__delete").addEventListener("click", this._removeElement);
     this._element.querySelector(".element__mask").addEventListener("click", this._handleClickLike);
     return this._element;
-  }
+  };
 }
