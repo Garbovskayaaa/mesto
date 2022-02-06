@@ -1,3 +1,5 @@
+import { popupFoto, openPopup, popupTypeImage } from "./index.js";
+
 export default class Card {
   constructor(data) {
     this._link = data.link;
@@ -27,14 +29,14 @@ export default class Card {
   _removeElement = () => {
     // удаление картинки
     this._element.remove();
+    this._element = null;
   };
 
   _handleOpenPopup = (evt) => {
-    const popupFoto = document.querySelector(".popup__foto");
     popupFoto.src = this._link;
     popupFoto.alt = evt.currentTarget.alt;
     document.querySelector(".popup__foto-name").textContent = this._name;
-    document.querySelector(".popup_type_image").classList.add("popup_opened");
+    openPopup(popupTypeImage);
   };
 
   generateCard() {

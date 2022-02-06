@@ -13,7 +13,7 @@ export default class FormValidator {
     if (this._hasInvalidInput()) {
       // сделай кнопку неактивной
       this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.disabled = 'disabled';
+      this._buttonElement.disabled = true;
     } else {
       // иначе сделай кнопку активной
       this._buttonElement.classList.remove(this._inactiveButtonClass);
