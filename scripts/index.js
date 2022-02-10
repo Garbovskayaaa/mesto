@@ -1,5 +1,27 @@
 import FormValidator from "./FormValidator.js";
-import Card from "./Card.js";
+import Card from "./components/Card.js";
+import Section from "./components/Section.js";
+import { 
+  initialCards,
+  enableValidations,
+  cardElements,
+  cardTemplate } from './utils/constants.js'
+
+
+const cardsCatalogue = new Section ({
+  items: initialCards,
+  renderer: (item) => {
+    const newCard = new Card(item, cardTemplate);
+    const cardElement = newCard.generateCard(item);
+    cardsCatalogue.addItem(cardElement);
+    return newCard.generateCard();
+  }
+  }, cardElements);
+
+// отрисовка карточек
+cardsCatalogue.rendererItems();
+
+
 // модалка - редактирование профиля
 const nameInput = document.querySelector(".popup__input_user_name"); // форма ввода имя user
 const jobInput = document.querySelector(".popup__input_user_job"); // форма ввода занятие user
@@ -16,7 +38,7 @@ const popupAddOpen = document.querySelector(".profile__add-button"); // кноп
 export const popupFoto = document.querySelector(".popup__foto"); 
 
 const popupAddCard = document.querySelector(".popup__edit-addCard"); // форма ввода url и наименование new карточек
-const cardElements = document.querySelector(".elements"); // сетка добавления new карточек
+// const cardElements = document.querySelector(".elements"); // сетка добавления new карточек
 const popups = document.querySelectorAll(".popup");
 const titleInput = document.querySelector(".popup__input_title"); // форма наименование new карточки
 const linkInput = document.querySelector(".popup__input_link"); // форма url new карточек
@@ -24,42 +46,42 @@ const linkInput = document.querySelector(".popup__input_link"); // форма ur
 export const popupTypeImage = document.querySelector('.popup_type_image');
 
 
-//Добавление элементов из имеющегося массива
-const initialCards = [
-  {
-    name: "Байкал",
-    link: "https://s00.yaplakal.com/pics/pics_original/2/7/8/4104872.jpg",
-  },
-  {
-    name: "Дальний Восток",
-    link: "https://rusmystery.ru/wp-content/uploads/2018/11/yaponskoe.jpg",
-  },
-  {
-    name: "Река Лена",
-    link: "https://i0.wp.com/img-fotki.yandex.ru/get/6744/42670583.48/0_ed6f0_d27cc61a_orig.jpg",
-  },
-  {
-    name: "Сахалин",
-    link: "https://wallpapershome.ru/images/pages/pic_h/23351.jpg",
-  },
-  {
-    name: "Приморье",
-    link: "https://static.tildacdn.com/tild3137-3133-4037-b631-663832643431/45882029112_2981c7fe.jpg",
-  },
-  {
-    name: "Кольский полуостров",
-    link: "https://mtdata.ru/u3/photo2238/20197588453-0/original.jpg",
-  },
-];
+// //Добавление элементов из имеющегося массива
+// const initialCards = [
+//   {
+//     name: "Байкал",
+//     link: "https://s00.yaplakal.com/pics/pics_original/2/7/8/4104872.jpg",
+//   },
+//   {
+//     name: "Дальний Восток",
+//     link: "https://rusmystery.ru/wp-content/uploads/2018/11/yaponskoe.jpg",
+//   },
+//   {
+//     name: "Река Лена",
+//     link: "https://i0.wp.com/img-fotki.yandex.ru/get/6744/42670583.48/0_ed6f0_d27cc61a_orig.jpg",
+//   },
+//   {
+//     name: "Сахалин",
+//     link: "https://wallpapershome.ru/images/pages/pic_h/23351.jpg",
+//   },
+//   {
+//     name: "Приморье",
+//     link: "https://static.tildacdn.com/tild3137-3133-4037-b631-663832643431/45882029112_2981c7fe.jpg",
+//   },
+//   {
+//     name: "Кольский полуостров",
+//     link: "https://mtdata.ru/u3/photo2238/20197588453-0/original.jpg",
+//   },
+// ];
 
-const enableValidations = {
-  formSelector: ".popup__form", //Селектор формы
-  inputSelector: ".popup__input", //селектор инпута
-  submitButtonSelector: ".popup__button", //селектор кнопка сабмит формы
-  inactiveButtonClass: "popup__button_disabled", //кнопка_отключена
-  inputErrorClass: "popup__input_type_error", // появляется border-bottom: red;
-  errorClass: "popup__error-visible", //всплывающая_ошибка
-};
+// const enableValidations = {
+//   formSelector: ".popup__form", //Селектор формы
+//   inputSelector: ".popup__input", //селектор инпута
+//   submitButtonSelector: ".popup__button", //селектор кнопка сабмит формы
+//   inactiveButtonClass: "popup__button_disabled", //кнопка_отключена
+//   inputErrorClass: "popup__input_type_error", // появляется border-bottom: red;
+//   errorClass: "popup__error-visible", //всплывающая_ошибка
+// };
 
 function closePopupEsc(evt) {
   if (evt.key === "Escape") {
@@ -107,15 +129,6 @@ function handleProfileFormSubmit(evt) {
   closePopup(popupEdit);
 };
 
-function addNewCardImg(titleInput, linkInput) { 
-  const newCard = new Card({ name: titleInput, link: linkInput });
-  cardElements.prepend(newCard.generateCard());
-}; 
-
-initialCards.forEach((item) => {
-  addNewCardImg(item.name, item.link);
-});
-
 popupAddCard.addEventListener("submit", (evt) => { 
   evt.preventDefault(); 
   addNewCardImg(titleInput.value, linkInput.value); 
@@ -124,7 +137,7 @@ popupAddCard.addEventListener("submit", (evt) => {
 
 profileOpenBtn.addEventListener("click", () => openPopupProfile(popupEdit));
 formEdit.addEventListener("submit", handleProfileFormSubmit);
-popupAddOpen.addEventListener("click", () => openPopup(popupCards));
+// popupAddOpen.addEventListener("click", () => openPopup(popupCards));
 
 const editFormValidator = new FormValidator(enableValidations, formEdit);
 const cardFormValidator = new FormValidator(enableValidations, popupAddCard);

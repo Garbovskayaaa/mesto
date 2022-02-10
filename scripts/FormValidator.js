@@ -6,7 +6,6 @@ export default class FormValidator {
     this._inactiveButtonClass = data.inactiveButtonClass;
     this._inputErrorClass = data.inputErrorClass;
   }
-
   // // Проверка состояния кнопки
   _toggleButtonState = () => {
     // Если есть хотя бы один невалидный инпут
