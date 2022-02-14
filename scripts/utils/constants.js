@@ -36,4 +36,7 @@ export const enableValidations = {
 
 export const cardElements = document.querySelector(".elements"); // сетка добавления new карточек
 
-export const cardTemplate = document.querySelector('.template-card')
+export const cardTemplate = document.querySelector('.template-card') // для Section
+
+export const popupCards = document.querySelector(".popup_type_add"); // модал добавления new карточек
+export const popupAddOpen = document.querySelector(".profile__add-button"); // кнопка открытия добавления new карточек
