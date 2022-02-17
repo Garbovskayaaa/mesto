@@ -1,9 +1,13 @@
-import { popupFoto, popupTypeImage } from '../index.js';
+// import { popupFoto, popupTypeImage } from '../index.js';
 
 export default class Card {
-  constructor(data) {
+  constructor(data , {handleCardClick}) {
+    this._data = data;
     this._link = data.link;
     this._name = data.name;
+    this._element = this._getTemplate();
+    this._handleCardClick = handleCardClick;
+    this._elementCard = this._element.querySelector('.element__item');
   };
 
   _getTemplate() {
@@ -32,21 +36,12 @@ export default class Card {
     this._element = null;
   };
 
-  _handleOpenPopup = (evt) => {
-    popupFoto.src = this._link;
-    popupFoto.alt = evt.currentTarget.alt;
-    document.querySelector('.popup__foto-name').textContent = this._name;
-    popupTypeImage.open();
-  };
-
   generateCard() {
     // Запишем разметку в приватное поле _element.
     // Так у других элементов появится доступ к ней.
-    this._element = this._getTemplate();
-    const elementCard = this._element.querySelector('.element__item');
     // Добавим данные
-    elementCard.src = this._link;
-    elementCard.addEventListener('click', this._handleOpenPopup);
+    this._elementCard.src = this._link;
+    // this._elementCard.addEventListener('click', this._handleOpenPopup);
     this._element.querySelector('.element__suptitle').textContent = this._name;
     this._element.querySelector('.element__delete').addEventListener('click', this._removeElement);
     this._element.querySelector('.element__mask').addEventListener('click', this._handleClickLike);

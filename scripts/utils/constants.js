@@ -40,3 +40,6 @@ export const cardTemplate = document.querySelector('.template-card') // для S
 
 export const popupCards = document.querySelector(".popup_type_add"); // модал добавления new карточек
 export const popupAddOpen = document.querySelector(".profile__add-button"); // кнопка открытия добавления new карточек
+
+export const popupFoto = document.querySelector('.popup__foto'); 
+export const popupTypeImage = document.querySelector('.popup_type_image');
