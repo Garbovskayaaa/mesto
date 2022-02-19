@@ -23,7 +23,7 @@ export default class FormValidator {
     
     inputElement.classList.remove(this._inputErrorClass);
     this._errorElement.classList.remove(this._errorClass);
-    this._errorElement.textContent = "";
+    this._errorElement.textContent = '';
   };
 
   //Функция, проверяет валидность поля
@@ -65,7 +65,7 @@ export default class FormValidator {
     // чтобы проверить состояние кнопки в самом начале
     this._toggleButtonState();
 
-    this._buttonElement.addEventListener("reset", (evt) => {
+    this._buttonElement.addEventListener('reset', (evt) => {
       // При очистке формы через метод reset вызывается событие reset - вот как раз мы его тут ловим и управляем кнопкой
       // нужен для того, чтобы управление кнопкой сработало только после полной очистки инпутов, тогда кнопка деактивируется
       setTimeout(() => {
@@ -74,7 +74,7 @@ export default class FormValidator {
     });
 
     this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
+      inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
         // чтобы проверять его при изменении любого из полей
         this._toggleButtonState();
