@@ -10,7 +10,6 @@ import {
   initialCards,
   enableValidations,
   cardElements,
-  cardTemplate,
   popupAddOpen,
   formEdit,
   popupAddCard,
@@ -28,7 +27,7 @@ const popupWithImage = new PopupWithImage (".popup_type_image");
 popupWithImage.setEventListeners();
 
 const createCard = (item) => {
-  const newCard = new Card(item.link, item.name, cardTemplate, {
+  const newCard = new Card(item.link, item.name, '.template-card', {
     handleCardClick: () => {
       popupWithImage.open(item.link, item.name);
     }
@@ -73,7 +72,6 @@ editFormValidator.enableValidation();
 
 // открытие попапа добавления карточки
 popupAddOpen.addEventListener("click", () => {
-  cardFormValidator.enableValidation();
   popupAddCardForm.open();
 });
 
@@ -82,6 +80,5 @@ popupEdit.addEventListener("click", () => {
   const user = userInfo.getUserInfo();
   nameInput.value = user.name;
   jobInput.value = user.job;
-  editFormValidator.enableValidation();
   popupEditForm.open();
 })
