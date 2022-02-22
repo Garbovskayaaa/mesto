@@ -65,7 +65,7 @@ export default class FormValidator {
     // чтобы проверить состояние кнопки в самом начале
     this._toggleButtonState();
 
-    this._buttonElement.addEventListener('reset', (evt) => {
+    this._formElement.addEventListener('reset', () => {
       // При очистке формы через метод reset вызывается событие reset - вот как раз мы его тут ловим и управляем кнопкой
       // нужен для того, чтобы управление кнопкой сработало только после полной очистки инпутов, тогда кнопка деактивируется
       setTimeout(() => {
