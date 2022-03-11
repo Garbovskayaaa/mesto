@@ -7,13 +7,13 @@ export default class PopupWithForm extends Popup {
     this._renderer = renderer;
     this._formSubmit = this._formSubmit.bind(this);
     this._popupForm = this._popup.querySelector('.popup__form');
-    this._inputs = this._popupForm.querySelectorAll('.popup__input');
+    // this._inputs = this._popupForm.querySelectorAll('.popup__input');
   }
 
 // приватный метод _getInputValues, который собирает данные всех полей формы.
   _getInputValues() {
     this._formValues = {};
-    this._inputs.forEach((input) => {
+    this._popupForm.querySelectorAll('.popup__input').forEach((input) => {
       this._formValues[input.name] = input.value;
     });
     // возвращаем объект значений
@@ -26,6 +26,7 @@ export default class PopupWithForm extends Popup {
     evt.preventDefault();
       this._renderer(this._getInputValues());
       this.close();
+      debugger;
   }
 // Перезаписывает родительский метод setEventListeners.
 // Метод добавляет обработчик клика иконке закрытия, и добавлять обработчик сабмита формы.

@@ -5,6 +5,7 @@
   margin-right: 19px;
   display: flex;
   flex-direction: column;
+  flex-basis: 65%;
 }
 
 @media (min-width: 768px) {

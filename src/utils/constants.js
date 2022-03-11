@@ -5,7 +5,7 @@ export const initialCards = [
 },
 {
   name: 'Дальний Восток',
-  link: 'https://pbs.twimg.com/media/EEexwzxW4AAEgYF.jpg:large',
+  link: 'https://im0-tub-ru.yandex.net/i?id=5a489c63a08363cf1010c5e3a31dd4b0-l&ref=rim&n=13&w=1080&h=1350',
 },
 {
   name: 'Река Лена',
@@ -46,3 +46,4 @@ export const jobProfile = document.querySelector('.profile__job'); // главн
 export const popupEdit = document.querySelector('.profile__edit-button'); // модал edit профиль
 export const nameInput = document.querySelector('.popup__input_user_name'); // форма ввода имя user
 export const jobInput = document.querySelector('.popup__input_user_job'); // форма ввода занятие user
+export const formAvatar = document.querySelector('.popup_type_avatar')

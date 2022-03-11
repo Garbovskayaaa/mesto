@@ -1,0 +1,16 @@
+.element__like-number {
+  width: 10px;
+  height: 13px;
+  margin: 0;
+  margin-top: 3px;
+  margin-bottom: 22px;
+  margin-right: 19px;
+  font-size: 13px;
+  line-height: 16px;
+  padding: 0;
+  background-color: transparent;
+  color: black;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+}

@@ -6,8 +6,10 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._element = this._getTemplate();
     this._elementCard = this._element.querySelector('.element__item');
-    this._elementMask = this._element.querySelector('.element__mask');
     this._elementDelete = this._element.querySelector('.element__delete');
+    this._elementConteiner = this._element.querySelector('.element__like-container');
+    this._elementMask = this._element.querySelector('.element__mask');
+    this._elementNumber = this._element.querySelector('.element__like-number');
   }
 
   _getTemplate() {
@@ -29,6 +31,7 @@ export default class Card {
     this._elementCard.src = this._link;
     this._elementCard.alt = this._name;
     this._element.querySelector('.element__suptitle').textContent = this._name;
+    // this._elementNumber.textContent = this._cardSelector;
     this._setEventListeners();
     return this._element;
   }
@@ -48,6 +51,22 @@ export default class Card {
     // открываем картинку
     this._handleCardClick(this._name, this._link);
   };
+
+  likesCounterUpdate(data) {
+    this._countLikeElement.textContent = data.length;
+  }
+
+  _toggleLikeState() {
+    if (this._checkUserLike()) {
+      this.setLike();
+    } else {
+      this.unsetLike();
+    }
+  }
+
+  _checkUserLike() {
+    return this._likes.some((item) => item._id === this._currentUserId);
+  }
 
     _setEventListeners () {
       this._elementDelete.addEventListener('click', this._removeElement);

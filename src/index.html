@@ -16,8 +16,9 @@
 
     <main class='content'>
       <section class='profile'>
-        <div class='profile__custom'>
-          <img class='profile__avatar' src="<%=require('./image/Avatar.jpg')%>" alt='Аватар'>
+        <button class="profile__avatar-edit" type="button" title="Обновить аватар">
+          <img class='profile__avatar' src="<%=require('./image/Avatar.jpg')%>" alt='Фото профиля'>
+        </button>
           <div class='profile__info'>
             <div class='profile__info-name'>
               <h1 class='profile__name'>Жак-Ив Кусто</h1>
@@ -25,7 +26,6 @@
             </div>
             <p class='profile__job'>Исследователь океана</p>
           </div>
-        </div>
         <button type='button' class='profile__add-button' aria-label='close'></button>
       </section>
       <section class='photos'>
@@ -106,12 +106,43 @@
           <h2 class='popup__foto-name'></h2>
       </div>
     </div>
+    <div class="popup popup_type_avatar">
+      <div class="popup__container">
+        <button type="button" class="popup__close" aria-label='close'></button>
+        <h3 class="popup__suptitle">Обновить аватар</h3>
+        <form class="popup__form popup__edit-avatar" name='edit-profile' novalidate>
+          <input
+            type="url"
+            value=""
+            placeholder=""
+            class="popup__input popup__input_link"
+            required
+            id="link"
+            name="avatar"
+            autocomplete="off">
+          <span id='link-error' class='popup__error-visible'></span>
+          <button id='submitButton' type='submit' class='popup__button' name='submit'>Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_delite_card">
+      <div class="popup__container">
+        <button type="button" class="popup__close" aria-label="close"></button>
+        <h3 class="popup__suptitle-delite">Вы уверены?</h3>
+        <form class="popup__form popup__delite">
+          <button id='submitButton' type='submit' class='popup__button' name='submit'>Да</button>
+        </form>
+      </div>
+    </div>
     <template class='template-card'>
       <li class='element'>
         <img src='#' alt='' class='element__item'>
         <button type='button' class='element__delete' arie-label='delete'></button>
         <h2 class='element__suptitle'></h2>
-        <button type='button' class='element__mask' arial-label='like'></button>
+        <div class="element__like-container">
+          <button type='button' class='element__mask' arial-label='like'></button>
+          <p class='element__like-number'>6</p>
+        </div>
       </li>
     </template>
   </div>

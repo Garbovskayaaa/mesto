@@ -10,6 +10,7 @@
   padding: 0px;
   cursor: pointer;
   margin: 33px 19px 0 19px;
+  width: 282px;
 }
 
 @media (min-width: 768px) {
