@@ -47,3 +47,6 @@ export const popupEdit = document.querySelector('.profile__edit-button'); // м�
 export const nameInput = document.querySelector('.popup__input_user_name'); // форма ввода имя user
 export const jobInput = document.querySelector('.popup__input_user_job'); // форма ввода занятие user
 export const formAvatar = document.querySelector('.popup_type_avatar')
+export const popupConfirmSelector = document.querySelector('.popup_delite_card');
+export const popupButtonAvatar = document.querySelector('.profile__avatar-edit');
+export const avatarProfile = document.querySelector('.profile__avatar');

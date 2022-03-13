@@ -4,10 +4,9 @@ import Popup from './Popup.js';
 export default class PopupWithForm extends Popup {
   constructor({ popupSelector, renderer }) {
     super(popupSelector);
-    this._renderer = renderer;
     this._formSubmit = this._formSubmit.bind(this);
-    this._popupForm = this._popup.querySelector('.popup__form');
-    // this._inputs = this._popupForm.querySelectorAll('.popup__input');
+    this._renderer = renderer;
+    this._popupForm= this._popup.querySelector('.popup__form');
   }
 
 // приватный метод _getInputValues, который собирает данные всех полей формы.
@@ -26,7 +25,6 @@ export default class PopupWithForm extends Popup {
     evt.preventDefault();
       this._renderer(this._getInputValues());
       this.close();
-      debugger;
   }
 // Перезаписывает родительский метод setEventListeners.
 // Метод добавляет обработчик клика иконке закрытия, и добавлять обработчик сабмита формы.
@@ -40,6 +38,7 @@ export default class PopupWithForm extends Popup {
     super.close();
     this._popupForm.reset();
   }
+  
 }
 
 
