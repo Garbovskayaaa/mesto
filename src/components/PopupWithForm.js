@@ -3,10 +3,11 @@ import Popup from './Popup.js';
 // Кроме селектора попапа принимает в конструктор колбэк сабмита формы.
 export default class PopupWithForm extends Popup {
   constructor({ popupSelector, renderer }) {
-    super(popupSelector);
-    this._formSubmit = this._formSubmit.bind(this);
-    this._renderer = renderer;
-    this._popupForm= this._popup.querySelector('.popup__form');
+    super(popupSelector)
+    // this._popup = document.querySelector(popupSelector);
+    this._formSubmit = this._formSubmit.bind(this)
+    this._renderer = renderer
+    this._popupForm = this._popup.querySelector('.popup__form')
   }
 
 // приватный метод _getInputValues, который собирает данные всех полей формы.
@@ -19,13 +20,16 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
-
     //* Сабмит формы
   _formSubmit(evt) {
     evt.preventDefault();
       this._renderer(this._getInputValues());
       this.close();
   }
+
+  changeHandlerSubmitForm(newFormSubmit) {
+  this._formSubmit = newFormSubmit;
+}
 // Перезаписывает родительский метод setEventListeners.
 // Метод добавляет обработчик клика иконке закрытия, и добавлять обработчик сабмита формы.
   setEventListeners() {

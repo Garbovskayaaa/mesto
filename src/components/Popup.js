@@ -3,9 +3,9 @@
 export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
-    this._popupCloseButton = this._popup.querySelector('.popup__close');
     this._handleEscClose = this._handleEscClose.bind(this);
-    this._submitButton = this._popup.querySelector('.popup__button');
+    // this._popupCloseButton = this._popup.querySelector('.popup__close');
+    // this._submitButton = this._popup.querySelector('.popup__button');
   };
 // публичные методы open и close, которые отвечают за открытие и закрытие попапа.
   open() {
@@ -27,6 +27,8 @@ export default class Popup {
 // добавляет слушатель клика иконке закрытия попапа. 
 // Модальное окно также закрывается при клике на оверлей.
   setEventListeners() {
+    this._popupCloseButton = this._popup.querySelector('.popup__close');
+
     this._popupCloseButton.addEventListener('click', () => {
       this.close();
     });
@@ -35,12 +37,12 @@ export default class Popup {
     })
   }
 
-  loadingMessage(loading) {
-    if (loading === true) {
-      this._submitButton.textContent = 'Сохранение...';
-    }
-    else {
-      this._submitButton.textContent = 'Сохранить';
-    }
-  }
+  // loadingMessage(loading) {
+  //   if (loading === true) {
+  //     this._submitButton.textContent = 'Сохранение...';
+  //   }
+  //   else {
+  //     this._submitButton.textContent = 'Сохранить';
+  //   }
+  // }
 }

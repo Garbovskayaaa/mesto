@@ -38,5 +38,7 @@
 @import url('../blocks/popup/_opened/popup_opened.css');
 @import url('../blocks/element/__like-number/element__like-number.css');
 @import url('../blocks/element/__like-container/element__like-container.css');
+@import url('../blocks/popup/__suptitle-delite/popup__suptitle-delite.css');
+@import url('../blocks/element/__delete/_hidden/element__delete_hidden.css');
 
 @import url('../blocks/profile/__avatar-edit/profile__avatar-edit.css');
