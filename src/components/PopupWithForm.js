@@ -28,7 +28,7 @@ export default class PopupWithForm extends Popup {
   }
 
   changeHandlerSubmitForm(newFormSubmit) {
-  this._formSubmit = newFormSubmit;
+  this._formSubmit = newFormSubmit
 }
 // Перезаписывает родительский метод setEventListeners.
 // Метод добавляет обработчик клика иконке закрытия, и добавлять обработчик сабмита формы.

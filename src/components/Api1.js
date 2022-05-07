@@ -52,11 +52,29 @@ class Api {
     .catch(console.log)
   }
 
-  deleteCard(_id) {
-    // console.log(id)
-    return fetch(`${this._baseUrl}/cards/${_id}`, {
+  deleteCard(id) {
+    console.log(id)
+    return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: this._headers
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .catch(console.log)
+  }
+
+  deleteLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .catch(console.log)
+  }
+
+  addLike(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .catch(console.log)

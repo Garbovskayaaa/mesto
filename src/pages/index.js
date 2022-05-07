@@ -5,10 +5,8 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-// import PopupWithConfirm from "../components/PopupWithConfirm";
 import { api } from "../components/Api1";
 import { 
-  initialCards,
   enableValidations,
   cardElements,
   popupAddOpen,
@@ -24,10 +22,14 @@ import {
   formAvatar
   } from "../utils/constants.js"
 
+let userId
+
 api.getProfile()
   .then(res => {
     console.log('ответ', res)
     userInfo.setUserInfo(res.name, res.about)
+
+    userId = res._id
   })
 
 api.getCards()
@@ -38,7 +40,9 @@ api.getCards()
         name: data.name,
         link: data.link,
         likes: data.likes,
-        id: data._id
+        id: data._id,
+        userId: userId,
+        ownerId: data.owner._id
       })
       cardsCatalogue.addItem(card)
     })
@@ -53,33 +57,39 @@ popupWithImage.setEventListeners();
 
 const confirmModal = new PopupWithForm ({
   popupSelector: '.popup_delite_card',
-  renderer: (_id) => {
-    console.log(_id)
-    api.deleteCard(_id)
+  renderer: (id) => {
+    api.deleteCard(id)
       .then(res => {
-        console.log('res', res)
+        console.log('Удаляем карточку', res)
       })
   }
 })
 confirmModal.setEventListeners();
+
 
 const createCard = (item) => {
   const newCard = new Card(item, '.template-card', {
     handleCardClick: () => {
       popupWithImage.open(item.link, item.name);
     },
-    handleCardDelete: () => {
-      console.log('нажали кнопку удалить')
-      console.log()
+    handleCardDelete: (id) => {
+      // console.log(id)
       confirmModal.open()
-        // confirmModal.changeHandlerSubmitForm(() => {
-        //   api.deleteCard(_id)
-        //     .then(res => {
-        //       newCard.deleteCard(_id)
-        //       confirmModal.close()
-        //       console.log(res)
-        //     })
-        // })
+      confirmModal.changeHandlerSubmitForm((id) => {
+        api.deleteCard(id)
+          .then(res => {
+            newCard.deleteCard()
+            confirmModal.close()
+            console.log(res)
+          })
+      })
+    },
+    handleLikeClick: (id) => {
+      api.addLike(id)
+        .then(res => {
+          // console.log(res)
+          newCard.setLikes(res.likes)
+        })
     }
   })
   return newCard.generateCard();
@@ -105,7 +115,9 @@ const popupAddCardForm = new PopupWithForm ({
         name: res.name,
         link: res.link,
         likes: res.likes,
-        id: res._id
+        id: res._id,
+        userId: userId,
+        ownerId: res.owner._id
     })
     cardsCatalogue.addItem(card);
     })

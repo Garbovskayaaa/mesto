@@ -1,13 +1,15 @@
 export default class Card {
-  constructor(data, cardSelector, {handleCardClick, handleCardDelete}) {
+  constructor(data, cardSelector, {handleCardClick, handleCardDelete, handleLikeClick}) {
     this._link = data.link;
-    this._name = data.name;
+    this._name = data.name;    
     this._likes = data.likes;
-    this._cardId = data._id;
-    console.log(this._cardId)
+    this._id = data.id;
+    this._userId = data.userId;
+    this._ownerId = data.ownerId;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
+    this._handleLikeClick = handleLikeClick;
 
     this._element = this._getTemplate();
     this._elementCard = this._element.querySelector('.element__item');
@@ -30,8 +32,8 @@ export default class Card {
   }
 
   _setEventListeners () {
-    this._elementDelete.addEventListener('click', () => this._handleCardDelete(this._cardId));
-    this._elementMask.addEventListener('click', this._handleClickLike);
+    this._elementDelete.addEventListener('click', () => this._handleCardDelete(this._id));
+    this._elementMask.addEventListener('click', () => this._handleLikeClick(this._id));
     this._elementCard.addEventListener('click', this._openImagePopup);
 }
 
@@ -41,18 +43,29 @@ export default class Card {
     this._elementCard.src = this._link;
     this._elementCard.alt = this._name;
     this._element.querySelector('.element__suptitle').textContent = this._name;
-    // this._elementNumber.textContent = this._cardSelector;
     this._setEventListeners();
-    this._setLikes();
+    this.setLikes(this._likes);
+    
+    if(this._ownerId !== this._userId) {
+      this._element.querySelector('.element__delete').style.display = 'none'
+    }
+    //если среди слайков, найдется юзер у которого юзер.айди совпадает с вашим юзер.айди
+    const userHasLikedCard = this._likes.find(user => user._id === this._userId)
+    if(userHasLikedCard) {
+      this._handleLikeIcon()
+    }
     return this._element;
   }
 
-  _handleClickLike = () => {
+  _handleLikeIcon = () => {
     // Лайк
     this._elementMask.classList.toggle('element__mask_active');
   };
 
-  _setLikes() {
+  //принимает снаружи новые лайки
+  setLikes(newLikes) {
+    console.log('newLikes', newLikes)
+    this._likes = newLikes
     const likeElement = this._element.querySelector('.element__like-number')
     likeElement.textContent = this._likes.length
   }
@@ -67,20 +80,4 @@ export default class Card {
     // открываем картинку
     this._handleCardClick(this._name, this._link);
   };
-
-  // likesCounterUpdate(data) {
-  //   this._countLikeElement.textContent = data.length;
-  // }
-
-  // _toggleLikeState() {
-  //   if (this._checkUserLike()) {
-  //     this.setLike();
-  //   } else {
-  //     this.unsetLike();
-  //   }
-  // }
-
-  // _checkUserLike() {
-  //   return this._likes.some((item) => item._id === this._currentUserId);
-  // }
 }

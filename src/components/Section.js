@@ -12,6 +12,6 @@ export default class Section {
 
   //* Добавление карточки
   addItem(element) {
-    this._container.prepend(element);
+    this._container.append(element);
   }
 }
