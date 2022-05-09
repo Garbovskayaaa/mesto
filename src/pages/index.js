@@ -28,6 +28,8 @@ api.getProfile()
   .then(res => {
     console.log('ответ', res)
     userInfo.setUserInfo(res.name, res.about)
+    // userInfo.setUserAvatar(res.avatar)
+    // console.log(res.avatar)
 
     userId = res._id
   })
@@ -55,17 +57,17 @@ const userInfo = new UserInfo({nameProfile, jobProfile, avatarProfile});
 const popupWithImage = new PopupWithImage (".popup_type_image");
 popupWithImage.setEventListeners();
 
+// Попап удаления карточки
 const confirmModal = new PopupWithForm ({
   popupSelector: '.popup_delite_card',
   renderer: (id) => {
     api.deleteCard(id)
       .then(res => {
-        console.log('Удаляем карточку', res)
+        console.log('index', res)
       })
   }
 })
 confirmModal.setEventListeners();
-
 
 const createCard = (item) => {
   const newCard = new Card(item, '.template-card', {
@@ -75,9 +77,9 @@ const createCard = (item) => {
     handleCardDelete: (id) => {
       // console.log(id)
       confirmModal.open()
-      confirmModal.changeHandlerSubmitForm((id) => {
+      confirmModal.changeHandlerSubmitForm(() => {
         api.deleteCard(id)
-          .then(res => {
+          .then((res) => {
             newCard.deleteCard()
             confirmModal.close()
             console.log(res)
@@ -85,11 +87,17 @@ const createCard = (item) => {
       })
     },
     handleLikeClick: (id) => {
-      api.addLike(id)
+      if(newCard.isLiked()) {
+        api.deleteLike(id)
         .then(res => {
-          // console.log(res)
+          newCard.setLikes(res.likes)
+      }) 
+    } else {
+        api.addLike(id)
+        .then(res => {
           newCard.setLikes(res.likes)
         })
+      }
     }
   })
   return newCard.generateCard();
@@ -142,9 +150,12 @@ popupEditForm.setEventListeners();
 const popupEditAvatar = new PopupWithForm ({
   popupSelector: ".popup_type_avatar",
   renderer: (item) => {
-    popupEditAvatar.loadingMessage(true);
-    userInfo.setUserAvatar(item.avatar);
-    popupEditAvatar.close();
+    api.editAvatar(item)
+    .then(res => {
+      popupEditAvatar.loadingMessage(true);
+      userInfo.setUserAvatar(item);
+      popupEditAvatar.close();
+    })
   }
 })
 popupEditAvatar.setEventListeners();

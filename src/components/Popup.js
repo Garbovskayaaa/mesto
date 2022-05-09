@@ -5,7 +5,7 @@ export default class Popup {
     this._popup = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
     // this._popupCloseButton = this._popup.querySelector('.popup__close');
-    // this._submitButton = this._popup.querySelector('.popup__button');
+    this._submitButton = this._popup.querySelector('.popup__button');
   };
 // публичные методы open и close, которые отвечают за открытие и закрытие попапа.
   open() {
@@ -37,12 +37,12 @@ export default class Popup {
     })
   }
 
-  // loadingMessage(loading) {
-  //   if (loading === true) {
-  //     this._submitButton.textContent = 'Сохранение...';
-  //   }
-  //   else {
-  //     this._submitButton.textContent = 'Сохранить';
-  //   }
-  // }
+  loadingMessage(loading) {
+    if (loading === true) {
+      this._submitButton.textContent = 'Сохранение...'
+    }
+    else {
+      this._submitButton.textContent = 'Сохранить'
+    }
+  }
 }

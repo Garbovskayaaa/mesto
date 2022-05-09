@@ -29,9 +29,23 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
+    // делает из объекта строку
       body: JSON.stringify({
         name: item.name,
         about: item.job
+      })
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .catch(console.log)
+  }
+
+  editAvatar(item) {
+    console.log(item)
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: item.avatar
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
@@ -44,7 +58,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: item.name,
-        link: item.link
+        link: item.link,
         // likes: item.likes
       })
     })
@@ -53,13 +67,16 @@ class Api {
   }
 
   deleteCard(id) {
-    console.log(id)
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .catch(console.log)
+        // проверяем в консоли res (получение данных)
+    .then(res => { 
+      console.log('api', res)
+    })
   }
 
   deleteLike(id) {
@@ -79,7 +96,6 @@ class Api {
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .catch(console.log)
   }
-
   // другие методы работы с API
 }
 

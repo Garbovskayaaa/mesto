@@ -4,6 +4,7 @@ export default class Card {
     this._name = data.name;    
     this._likes = data.likes;
     this._id = data.id;
+    // console.log(this._id)
     this._userId = data.userId;
     this._ownerId = data.ownerId;
     this._cardSelector = cardSelector;
@@ -49,25 +50,36 @@ export default class Card {
     if(this._ownerId !== this._userId) {
       this._element.querySelector('.element__delete').style.display = 'none'
     }
-    //если среди слайков, найдется юзер у которого юзер.айди совпадает с вашим юзер.айди
-    const userHasLikedCard = this._likes.find(user => user._id === this._userId)
-    if(userHasLikedCard) {
-      this._handleLikeIcon()
-    }
     return this._element;
   }
 
-  _handleLikeIcon = () => {
-    // Лайк
-    this._elementMask.classList.toggle('element__mask_active');
-  };
+  _fillLike = () => {
+    this._elementMask.classList.add('element__mask_active');
+  }
+
+  _removeFeelLike  = () => {
+    this._elementMask.classList.remove('element__mask_active');
+  }
+
+  isLiked = () => {
+    const userHasLikedCard = this._likes.find(user => user._id === this._userId)
+    return userHasLikedCard
+  }
 
   //принимает снаружи новые лайки
   setLikes(newLikes) {
-    console.log('newLikes', newLikes)
+    // console.log('newLikes', newLikes)
     this._likes = newLikes
     const likeElement = this._element.querySelector('.element__like-number')
     likeElement.textContent = this._likes.length
+
+    //если среди лайков, найдется юзер у которого юзер.айди совпадает с вашим юзер.айди
+
+    if(this.isLiked()) {
+      this._fillLike()
+    } else {
+      this._removeFeelLike()
+    }
   }
 
   deleteCard() {
