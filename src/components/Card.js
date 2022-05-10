@@ -4,7 +4,6 @@ export default class Card {
     this._name = data.name;    
     this._likes = data.likes;
     this._id = data.id;
-    // console.log(this._id)
     this._userId = data.userId;
     this._ownerId = data.ownerId;
     this._cardSelector = cardSelector;
@@ -33,8 +32,7 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._elementDelete.addEventListener('click', () => this._handleCardDelete(this._id));
-    // this._element.querySelector('.element__delete').addEventListener('click', () => this._handleCardDelete(this))
+    this._elementDelete.addEventListener('click', () => this._handleCardDelete(this._id)); // передаем id при открытии модалки удаления
     this._elementMask.addEventListener('click', () => this._handleLikeClick(this._id));
     this._elementCard.addEventListener('click', this._openImagePopup);
 }
@@ -58,7 +56,7 @@ export default class Card {
     this._elementMask.classList.add('element__mask_active');
   }
 
-  _removeFeelLike  = () => {
+  _removeFillLike  = () => {
     this._elementMask.classList.remove('element__mask_active');
   }
 
@@ -69,17 +67,15 @@ export default class Card {
 
   //принимает снаружи новые лайки
   setLikes(newLikes) {
-    // console.log('newLikes', newLikes)
     this._likes = newLikes
     const likeElement = this._element.querySelector('.element__like-number')
     likeElement.textContent = this._likes.length
 
     //если среди лайков, найдется юзер у которого юзер.айди совпадает с вашим юзер.айди
-
     if(this.isLiked()) {
       this._fillLike()
     } else {
-      this._removeFeelLike()
+      this._removeFillLike()
     }
   }
 

@@ -12,10 +12,6 @@ class Api {
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .catch(console.log)
-    // проверяем в консоли res (получение данных)
-    // .then(res => { 
-    //   console.log('res', res)
-    // })
   }
 
 // 2. Загрузка карточек с сервера
@@ -42,6 +38,7 @@ class Api {
     .catch(console.log)
   }
 
+  // 4. Добавление новой карточки
   addCard(item) {
     return fetch(`${this._baseUrl}/cards`, { 
       method: 'POST',
@@ -56,6 +53,7 @@ class Api {
     .catch(console.log)
   }
 
+// 7. Удаление карточки
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
@@ -64,11 +62,11 @@ class Api {
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .catch(console.log)
         // проверяем в консоли res (получение данных)
-    .then(res => { 
-      console.log('api', res)
-    })
+    // .then(res => { 
+    //   console.log('api', res)
+    // })
   }
-
+// 8. Cнятие лайка
   deleteLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
@@ -78,6 +76,7 @@ class Api {
     .catch(console.log)
   }
 
+  // 8. Постановка лайка
   addLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
@@ -99,7 +98,6 @@ class Api {
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .catch(console.log)
   }
-  // другие методы работы с API
 }
 
 export const api = new Api({

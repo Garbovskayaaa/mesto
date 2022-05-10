@@ -25,9 +25,9 @@ export default class PopupWithForm extends Popup {
       this._renderer(this._getInputValues());
       this.close();
   }
-
+// подменяем изначальный formSubmit на новый
   changeHandlerSubmitForm(newFormSubmit) {
-  this._formSubmit = newFormSubmit
+    this._renderer = newFormSubmit
 }
 // Перезаписывает родительский метод setEventListeners.
 // Метод добавляет обработчик клика иконке закрытия, и добавлять обработчик сабмита формы.
@@ -41,7 +41,6 @@ export default class PopupWithForm extends Popup {
     super.close();
     this._popupForm.reset();
   }
-  
 }
 
 

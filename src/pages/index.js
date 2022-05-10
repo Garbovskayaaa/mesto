@@ -5,7 +5,7 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import { api } from "../components/Api1";
+import { api } from "../components/Api";
 import { 
   enableValidations,
   cardElements,
@@ -26,7 +26,6 @@ let userId
 
 api.getProfile()
   .then(res => {
-    console.log('ответ', res)
     userInfo.setUserInfo(res.name, res.about)
     userInfo.setUserAvatar(res.avatar)
 
@@ -35,7 +34,6 @@ api.getProfile()
 
 api.getCards()
   .then(cardList => {
-    console.log(cardList)
     cardList.forEach(data => {
       const card = createCard({
         name: data.name,
@@ -52,22 +50,18 @@ api.getCards()
 // Попап редактирования профиля
 const userInfo = new UserInfo({nameProfile, jobProfile, avatarProfile});
 
-// Для каждого попапа создавайте свой экземпляр класса PopupWithForm.
-const popupWithImage = new PopupWithImage (".popup_type_image");
-popupWithImage.setEventListeners();
-
 const createCard = (item) => {
   const newCard = new Card(item, '.template-card', {
     handleCardClick: () => {
       popupWithImage.open(item.link, item.name);
     },
     handleCardDelete: (id) => {
-      // console.log(id)
       confirmModal.open()
+      // паралельно устанавливаем новую функцию
       confirmModal.changeHandlerSubmitForm(() => {
         api.deleteCard(id)
           .then((res) => {
-            newCard.deleteCard(id)
+            newCard.deleteCard()
             confirmModal.close()
             console.log(res)
           })
@@ -105,6 +99,7 @@ cardsCatalogue.rendererItems();
 const popupAddCardForm = new PopupWithForm ({
   popupSelector: ".popup_type_add",
   renderer: (item) => {
+    popupAddCardForm.loadingMessage(true)
     api.addCard(item)
     .then(res => {
       const card = createCard({
@@ -115,7 +110,10 @@ const popupAddCardForm = new PopupWithForm ({
         userId: userId,
         ownerId: res.owner._id
     })
-    cardsCatalogue.addItem(card);
+      cardsCatalogue.addItem(card);
+    })
+    .finally(() => {
+      popupAddCardForm.loadingMessage(false)
     })
   }
 });
@@ -127,7 +125,7 @@ const confirmModal = new PopupWithForm ({
   renderer: (id) => {
     api.deleteCard(id)
       .then(res => {
-        console.log('index', res)
+        // console.log('index', res)
       })
   }
 })
@@ -137,11 +135,14 @@ confirmModal.setEventListeners();
 const popupEditForm = new PopupWithForm ({
   popupSelector: ".popup_type_edit",
   renderer: (item) => {
+    popupEditForm.loadingMessage(true)
     api.editProfile(item)
     .then(res => {
       userInfo.setUserInfo(item.name, item.job)
-      popupEditForm.loadingMessage(true);
       popupEditForm.close();
+    })
+    .finally(() => {
+      popupEditForm.loadingMessage(false)
     })
   }
 });
@@ -151,15 +152,21 @@ popupEditForm.setEventListeners();
 const popupEditAvatar = new PopupWithForm ({
   popupSelector: ".popup_type_avatar",
   renderer: (item) => {
+    popupEditAvatar.loadingMessage(true)
     api.editAvatar(item)
     .then(() => {
       userInfo.setUserAvatar(item.avatar);
-      popupEditAvatar.loadingMessage(true);
       popupEditAvatar.close();
+    })
+    .finally(() => {
+      popupEditAvatar.loadingMessage(false)
     })
   }
 })
 popupEditAvatar.setEventListeners();
+
+const popupWithImage = new PopupWithImage (".popup_type_image");
+popupWithImage.setEventListeners();
 
 const editFormValidator = new FormValidator(enableValidations, formEdit);
 const cardFormValidator = new FormValidator(enableValidations, popupAddCard);
