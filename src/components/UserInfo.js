@@ -11,7 +11,7 @@ export default class UserInfo {
   getUserInfo() {
     return {
       name: this._name.textContent,
-      job: this._job.textContent
+      job: this._job.textContent,
     }
   }
 // публичный метод setUserInfo, принимает новые данные пользователя
@@ -21,7 +21,7 @@ export default class UserInfo {
     this._job.textContent = job
   }
 
-  setUserAvatar(item) {
-    this._avatar.src = item.avatar
+  setUserAvatar(avatar) {
+    this._avatar.src = avatar
   }
 }

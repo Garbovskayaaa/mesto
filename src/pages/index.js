@@ -28,8 +28,7 @@ api.getProfile()
   .then(res => {
     console.log('ответ', res)
     userInfo.setUserInfo(res.name, res.about)
-    // userInfo.setUserAvatar(res.avatar)
-    // console.log(res.avatar)
+    userInfo.setUserAvatar(res.avatar)
 
     userId = res._id
   })
@@ -57,18 +56,6 @@ const userInfo = new UserInfo({nameProfile, jobProfile, avatarProfile});
 const popupWithImage = new PopupWithImage (".popup_type_image");
 popupWithImage.setEventListeners();
 
-// Попап удаления карточки
-const confirmModal = new PopupWithForm ({
-  popupSelector: '.popup_delite_card',
-  renderer: (id) => {
-    api.deleteCard(id)
-      .then(res => {
-        console.log('index', res)
-      })
-  }
-})
-confirmModal.setEventListeners();
-
 const createCard = (item) => {
   const newCard = new Card(item, '.template-card', {
     handleCardClick: () => {
@@ -80,7 +67,7 @@ const createCard = (item) => {
       confirmModal.changeHandlerSubmitForm(() => {
         api.deleteCard(id)
           .then((res) => {
-            newCard.deleteCard()
+            newCard.deleteCard(id)
             confirmModal.close()
             console.log(res)
           })
@@ -102,6 +89,7 @@ const createCard = (item) => {
   })
   return newCard.generateCard();
 }
+
 // 6 карточек создаются
 const cardsCatalogue = new Section ({
   items: [],
@@ -133,6 +121,18 @@ const popupAddCardForm = new PopupWithForm ({
 });
 popupAddCardForm.setEventListeners();
 
+// Попап удаления карточки
+const confirmModal = new PopupWithForm ({
+  popupSelector: '.popup_delite_card',
+  renderer: (id) => {
+    api.deleteCard(id)
+      .then(res => {
+        console.log('index', res)
+      })
+  }
+})
+confirmModal.setEventListeners();
+
 // редактирование профиля
 const popupEditForm = new PopupWithForm ({
   popupSelector: ".popup_type_edit",
@@ -140,6 +140,7 @@ const popupEditForm = new PopupWithForm ({
     api.editProfile(item)
     .then(res => {
       userInfo.setUserInfo(item.name, item.job)
+      popupEditForm.loadingMessage(true);
       popupEditForm.close();
     })
   }
@@ -151,9 +152,9 @@ const popupEditAvatar = new PopupWithForm ({
   popupSelector: ".popup_type_avatar",
   renderer: (item) => {
     api.editAvatar(item)
-    .then(res => {
+    .then(() => {
+      userInfo.setUserAvatar(item.avatar);
       popupEditAvatar.loadingMessage(true);
-      userInfo.setUserAvatar(item);
       popupEditAvatar.close();
     })
   }

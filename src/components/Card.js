@@ -32,8 +32,9 @@ export default class Card {
     return cardElement;
   }
 
-  _setEventListeners () {
+  _setEventListeners() {
     this._elementDelete.addEventListener('click', () => this._handleCardDelete(this._id));
+    // this._element.querySelector('.element__delete').addEventListener('click', () => this._handleCardDelete(this))
     this._elementMask.addEventListener('click', () => this._handleLikeClick(this._id));
     this._elementCard.addEventListener('click', this._openImagePopup);
 }
@@ -85,7 +86,7 @@ export default class Card {
   deleteCard() {
     // удаление картинки
     this._element.remove();
-    this._element = null;
+		this._element = null;
   };
 
   _openImagePopup = () => {

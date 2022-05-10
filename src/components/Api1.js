@@ -5,8 +5,9 @@ class Api {
     // тело конструктора
   }
 
+// 1. Загрузка информации о пользователе с сервера
   getProfile() {
-    return fetch(`${this._baseUrl}/users/me`, { // this._baseUrl + '/users/me'
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
@@ -17,6 +18,7 @@ class Api {
     // })
   }
 
+// 2. Загрузка карточек с сервера
   getCards() {
     return fetch(`${this._baseUrl}/cards`, { // this._baseUrl + '/cards'
       headers: this._headers
@@ -25,6 +27,7 @@ class Api {
     .catch(console.log)
   }
 
+  // 3. Редактирование профиля
   editProfile(item) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
@@ -33,19 +36,6 @@ class Api {
       body: JSON.stringify({
         name: item.name,
         about: item.job
-      })
-    })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
-  }
-
-  editAvatar(item) {
-    console.log(item)
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: this._headers,
-      body: JSON.stringify({
-        avatar: item.avatar
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
@@ -92,6 +82,19 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers
+    })
+    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .catch(console.log)
+  }
+
+  // 9. Обновление аватара пользователя
+  editAvatar(item) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: item.avatar
+      })
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .catch(console.log)
