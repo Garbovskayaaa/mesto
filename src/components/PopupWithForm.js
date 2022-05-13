@@ -23,7 +23,6 @@ export default class PopupWithForm extends Popup {
   _formSubmit(evt) {
     evt.preventDefault();
       this._renderer(this._getInputValues());
-      this.close();
   }
 // подменяем изначальный formSubmit на новый
   changeHandlerSubmitForm(newFormSubmit) {

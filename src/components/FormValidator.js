@@ -59,7 +59,6 @@ export default class FormValidator {
   // Добавление полей ошибок всем полям
   _setEventListeners = () => {
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     
     // чтобы проверить состояние кнопки в самом начале

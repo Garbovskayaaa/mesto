@@ -5,6 +5,7 @@ export default class Popup {
     this._popup = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
     this._submitButton = this._popup.querySelector('.popup__button');
+    this._popupCloseButton = this._popup.querySelector('.popup__close');
   };
 // публичные методы open и close, которые отвечают за открытие и закрытие попапа.
   open() {
@@ -26,8 +27,6 @@ export default class Popup {
 // добавляет слушатель клика иконке закрытия попапа. 
 // Модальное окно также закрывается при клике на оверлей.
   setEventListeners() {
-    this._popupCloseButton = this._popup.querySelector('.popup__close');
-
     this._popupCloseButton.addEventListener('click', () => {
       this.close();
     });

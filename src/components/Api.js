@@ -5,7 +5,7 @@ class Api {
     // тело конструктора
   }
 
-// 1. Загрузка информации о пользователе с сервера
+  // 1. Загрузка информации о пользователе с сервера
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
@@ -14,13 +14,17 @@ class Api {
     .catch(console.log)
   }
 
-// 2. Загрузка карточек с сервера
+  // 2. Загрузка карточек с сервера
   getCards() {
     return fetch(`${this._baseUrl}/cards`, { // this._baseUrl + '/cards'
       headers: this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
     .catch(console.log)
+  }
+
+  getAppInfo() {
+    return Promise.all([this.getCards(), this.getProfile()]);
   }
 
   // 3. Редактирование профиля
@@ -53,9 +57,9 @@ class Api {
     .catch(console.log)
   }
 
-// 7. Удаление карточки
-  deleteCard(id) {
-    return fetch(`${this._baseUrl}/cards/${id}`, {
+  // 7. Удаление карточки
+  deleteCard(_id) {
+    return fetch(`${this._baseUrl}/cards/${_id}`, {
       method: 'DELETE',
       headers: this._headers
     })
@@ -66,9 +70,10 @@ class Api {
     //   console.log('api', res)
     // })
   }
-// 8. Cнятие лайка
-  deleteLike(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+
+  // 8. Cнятие лайка
+  deleteLike(_id) {
+    return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
       method: 'DELETE',
       headers: this._headers
     })
@@ -77,8 +82,8 @@ class Api {
   }
 
   // 8. Постановка лайка
-  addLike(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+  addLike(_id) {
+    return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
       method: 'PUT',
       headers: this._headers
     })

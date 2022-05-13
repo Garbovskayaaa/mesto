@@ -22,62 +22,51 @@ import {
   formAvatar
   } from "../utils/constants.js"
 
+// текущий пользователь
 let userId
 
-api.getProfile()
-  .then(res => {
-    userInfo.setUserInfo(res.name, res.about)
-    userInfo.setUserAvatar(res.avatar)
-
-    userId = res._id
-  })
-
-api.getCards()
-  .then(cardList => {
-    cardList.forEach(data => {
-      const card = createCard({
-        name: data.name,
-        link: data.link,
-        likes: data.likes,
-        id: data._id,
-        userId: userId,
-        ownerId: data.owner._id
-      })
-      cardsCatalogue.addItem(card)
-    })
-  })
+api.getAppInfo()
+.then(([cardData, userData]) => {
+  userId = userData._id;
+  userInfo.setUserInfo( userData.name, userData.about);
+  userInfo.setUserAvatar(userData.avatar);
+  cardsCatalogue.renderItems(cardData);
+})
+.catch(err => console.log(`Ошибка.....: ${err}`))
 
 // Попап редактирования профиля
 const userInfo = new UserInfo({nameProfile, jobProfile, avatarProfile});
 
 const createCard = (item) => {
-  const newCard = new Card(item, '.template-card', {
+  const newCard = new Card(item, userId, '.template-card', {
     handleCardClick: () => {
       popupWithImage.open(item.link, item.name);
     },
-    handleCardDelete: (id) => {
+    handleCardDelete: (_id) => {
       confirmModal.open()
       // паралельно устанавливаем новую функцию
       confirmModal.changeHandlerSubmitForm(() => {
-        api.deleteCard(id)
-          .then((res) => {
-            newCard.deleteCard()
-            confirmModal.close()
-            console.log(res)
-          })
+        api.deleteCard(_id)
+        .then(()=> {
+          newCard.deleteCard()
+          confirmModal.close()
+        })
+        .catch(err => console.log(`Ошибка.....: ${err}`))
       })
     },
-    handleLikeClick: (id) => {
+    handleLikeClick: (_id) => {
       if(newCard.isLiked()) {
-        api.deleteLike(id)
-        .then(res => {
-          newCard.setLikes(res.likes)
-      }) 
-    } else {
-        api.addLike(id)
+        api.deleteLike(_id)
         .then(res => {
           newCard.setLikes(res.likes)
         })
+        .catch(err => console.log(`Ошибка.....: ${err}`))
+    } else {
+        api.addLike(_id)
+        .then(res => {
+          newCard.setLikes(res.likes)
+        })
+        .catch(err => console.log(`Ошибка.....: ${err}`))
       }
     }
   })
@@ -86,14 +75,10 @@ const createCard = (item) => {
 
 // 6 карточек создаются
 const cardsCatalogue = new Section ({
-  items: [],
   renderer: (item) => {
-    cardsCatalogue.addItem(createCard(item));
+    cardsCatalogue.addItem(createCard(item)); // новая сверху отображается
   }
 }, cardElements);
-
-// отрисовка карточек
-cardsCatalogue.rendererItems();
 
 // добавляем новую карточку
 const popupAddCardForm = new PopupWithForm ({
@@ -102,16 +87,10 @@ const popupAddCardForm = new PopupWithForm ({
     popupAddCardForm.loadingMessage(true)
     api.addCard(item)
     .then(res => {
-      const card = createCard({
-        name: res.name,
-        link: res.link,
-        likes: res.likes,
-        id: res._id,
-        userId: userId,
-        ownerId: res.owner._id
+      cardsCatalogue.prependItem(createCard(res))
+      popupAddCardForm.close()
     })
-      cardsCatalogue.addItem(card);
-    })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally(() => {
       popupAddCardForm.loadingMessage(false)
     })
@@ -124,9 +103,9 @@ const confirmModal = new PopupWithForm ({
   popupSelector: '.popup_delite_card',
   renderer: (id) => {
     api.deleteCard(id)
-      .then(res => {
-        // console.log('index', res)
-      })
+    .then(() => {
+    })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
   }
 })
 confirmModal.setEventListeners();
@@ -137,10 +116,11 @@ const popupEditForm = new PopupWithForm ({
   renderer: (item) => {
     popupEditForm.loadingMessage(true)
     api.editProfile(item)
-    .then(res => {
+    .then(() => {
       userInfo.setUserInfo(item.name, item.job)
       popupEditForm.close();
     })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally(() => {
       popupEditForm.loadingMessage(false)
     })
@@ -148,7 +128,7 @@ const popupEditForm = new PopupWithForm ({
 });
 popupEditForm.setEventListeners();
 
-// редактирование аватара
+// редактирование аватара 
 const popupEditAvatar = new PopupWithForm ({
   popupSelector: ".popup_type_avatar",
   renderer: (item) => {
@@ -163,7 +143,7 @@ const popupEditAvatar = new PopupWithForm ({
     })
   }
 })
-popupEditAvatar.setEventListeners();
+popupEditAvatar.setEventListeners(); 
 
 const popupWithImage = new PopupWithImage (".popup_type_image");
 popupWithImage.setEventListeners();
