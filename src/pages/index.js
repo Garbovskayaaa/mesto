@@ -138,6 +138,7 @@ const popupEditAvatar = new PopupWithForm ({
       userInfo.setUserAvatar(item.avatar);
       popupEditAvatar.close();
     })
+    .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally(() => {
       popupEditAvatar.loadingMessage(false)
     })

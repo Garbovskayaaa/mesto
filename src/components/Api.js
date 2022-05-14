@@ -11,7 +11,6 @@ class Api {
       headers: this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
   }
 
   // 2. Загрузка карточек с сервера
@@ -20,7 +19,6 @@ class Api {
       headers: this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
   }
 
   getAppInfo() {
@@ -39,7 +37,6 @@ class Api {
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
   }
 
   // 4. Добавление новой карточки
@@ -50,11 +47,9 @@ class Api {
       body: JSON.stringify({
         name: item.name,
         link: item.link,
-        // likes: item.likes
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
   }
 
   // 7. Удаление карточки
@@ -64,11 +59,6 @@ class Api {
       headers: this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
-        // проверяем в консоли res (получение данных)
-    // .then(res => { 
-    //   console.log('api', res)
-    // })
   }
 
   // 8. Cнятие лайка
@@ -78,7 +68,6 @@ class Api {
       headers: this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
   }
 
   // 8. Постановка лайка
@@ -88,7 +77,6 @@ class Api {
       headers: this._headers
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
   }
 
   // 9. Обновление аватара пользователя
@@ -101,7 +89,6 @@ class Api {
       })
     })
     .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
   }
 }
 
